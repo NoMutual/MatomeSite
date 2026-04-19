@@ -1,5 +1,8 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { fetchItemByCid, getSampleImages, getThumbnail } from "@/lib/dmm";
+import { TAG_BY_SLUG, TAG_CATEGORY_LABEL } from "@/lib/tags";
+import { getTagsForWork } from "@/lib/work-tags-store";
 
 export const revalidate = 60 * 60 * 24;
 
@@ -23,7 +26,7 @@ export default async function WorkDetailPage({ params }: Props) {
     item = await fetchItemByCid(cid);
   } catch (e) {
     return (
-      <div className="rounded border border-border bg-surface p-4 text-sm text-muted">
+      <div className="rounded-xl border border-border bg-surface p-6 text-sm text-muted">
         {e instanceof Error ? e.message : "取得エラー"}
       </div>
     );
@@ -32,49 +35,142 @@ export default async function WorkDetailPage({ params }: Props) {
 
   const thumb = getThumbnail(item);
   const samples = getSampleImages(item);
+  const customTags = getTagsForWork(cid)
+    .map((slug) => TAG_BY_SLUG.get(slug))
+    .filter((t): t is NonNullable<typeof t> => Boolean(t));
+
+  const customTagsByCategory = new Map<string, typeof customTags>();
+  for (const t of customTags) {
+    if (!customTagsByCategory.has(t.category))
+      customTagsByCategory.set(t.category, []);
+    customTagsByCategory.get(t.category)!.push(t);
+  }
 
   return (
-    <article className="space-y-6">
-      <header className="space-y-3">
-        <h1 className="text-xl font-bold leading-snug">{item.title}</h1>
-        <div className="flex flex-wrap gap-2 text-xs text-muted">
-          <span>発売: {item.date?.slice(0, 10)}</span>
-          {item.iteminfo?.maker?.[0] && <span>メーカー: {item.iteminfo.maker[0].name}</span>}
-          {item.iteminfo?.label?.[0] && <span>レーベル: {item.iteminfo.label[0].name}</span>}
-          {item.review && <span>★ {item.review.average} ({item.review.count})</span>}
-        </div>
-      </header>
+    <article className="space-y-8">
+      {/* パンくず */}
+      <nav className="text-xs text-muted">
+        <Link href="/" className="hover:text-text">
+          ホーム
+        </Link>
+        {" / "}
+        <Link href="/works" className="hover:text-text">
+          作品
+        </Link>
+        {" / "}
+        <span className="text-text">{cid}</span>
+      </nav>
 
-      <div className="grid gap-4 md:grid-cols-[2fr_3fr]">
-        {thumb && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={thumb} alt={item.title} className="w-full rounded border border-border" />
-        )}
+      {/* ヘッダー部: サムネ + 情報 */}
+      <div className="grid gap-6 md:grid-cols-[minmax(260px,340px)_1fr] md:gap-8">
         <div className="space-y-3">
-          <div className="rounded border border-border bg-surface p-4">
-            <div className="text-xs text-muted">価格</div>
-            <div className="mt-1 text-lg font-bold">{item.prices?.price ?? "—"}</div>
+          {thumb && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={thumb}
+              alt={item.title}
+              className="w-full rounded-xl border border-border"
+            />
+          )}
+        </div>
+
+        <div className="space-y-5">
+          <div>
+            <div className="flex flex-wrap items-center gap-2">
+              {item.iteminfo?.label?.[0] && (
+                <span className="rounded-md border border-border bg-bg px-2 py-0.5 text-[11px] text-muted">
+                  {item.iteminfo.label[0].name}
+                </span>
+              )}
+              {item.review && (
+                <span className="flex items-center gap-0.5 text-xs text-muted">
+                  <span className="text-accent">★</span>
+                  <span className="font-bold text-text">{item.review.average}</span>
+                  <span>({item.review.count})</span>
+                </span>
+              )}
+              <span className="text-xs text-muted">
+                発売 {item.date?.slice(0, 10)}
+              </span>
+            </div>
+            <h1 className="mt-3 text-2xl font-black leading-tight md:text-3xl">
+              {item.title}
+            </h1>
+            {item.iteminfo?.actress && item.iteminfo.actress.length > 0 && (
+              <div className="mt-2 text-sm text-muted">
+                出演:{" "}
+                {item.iteminfo.actress.map((a) => a.name).join(" / ")}
+              </div>
+            )}
+          </div>
+
+          {/* 価格 + CTA */}
+          <div className="rounded-xl border border-border bg-surface p-5">
+            <div className="flex items-baseline justify-between">
+              <span className="text-xs tracking-wider text-muted uppercase">
+                価格
+              </span>
+              <span className="text-2xl font-black text-primary">
+                {item.prices?.price ?? "—"}
+              </span>
+            </div>
             <a
               href={item.affiliateURL || item.URL}
               target="_blank"
               rel="noopener sponsored"
-              className="mt-3 block w-full rounded bg-accent py-3 text-center font-medium text-white"
+              className="mt-4 flex h-12 w-full items-center justify-center gap-2 rounded-lg bg-primary text-sm font-bold text-white transition hover:bg-primary-2"
             >
-              FANZA で見る
+              FANZAで見る
+              <span aria-hidden>→</span>
             </a>
-            <p className="mt-2 text-[10px] text-muted">
-              上記は広告リンクです（PR）。リンク先の価格・販売状況は変動します。
+            <p className="mt-2 text-center text-[10px] text-muted">
+              上記は広告リンク（PR）です。価格・販売状況は変動します。
             </p>
           </div>
 
+          {/* 独自タグ */}
+          {customTags.length > 0 && (
+            <div className="space-y-3 rounded-xl border border-primary/20 bg-primary/5 p-4">
+              <div className="flex items-center justify-between">
+                <div className="text-[11px] font-semibold tracking-wider text-primary uppercase">
+                  独自タグ（中身の特徴）
+                </div>
+                <span className="text-[10px] text-muted">
+                  {customTags.length} 個
+                </span>
+              </div>
+              {[...customTagsByCategory.entries()].map(([cat, tags]) => (
+                <div key={cat}>
+                  <div className="mb-1 text-[10px] text-muted">
+                    {TAG_CATEGORY_LABEL[cat as keyof typeof TAG_CATEGORY_LABEL]}
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {tags.map((t) => (
+                      <Link
+                        key={t.slug}
+                        href={`/tags/${t.category}/${t.slug}`}
+                        className="rounded-full border border-primary/40 bg-primary/10 px-2.5 py-1 text-xs text-primary transition hover:bg-primary hover:text-white"
+                      >
+                        {t.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* 公式ジャンル */}
           {item.iteminfo?.genre && item.iteminfo.genre.length > 0 && (
             <div>
-              <div className="mb-1 text-xs text-muted">公式ジャンル</div>
+              <div className="mb-2 text-[11px] font-semibold tracking-wider text-muted uppercase">
+                公式ジャンル
+              </div>
               <div className="flex flex-wrap gap-1.5">
                 {item.iteminfo.genre.map((g) => (
                   <span
                     key={g.id}
-                    className="rounded border border-border bg-surface px-2 py-0.5 text-xs"
+                    className="rounded-md border border-border bg-bg px-2 py-1 text-xs text-muted"
                   >
                     {g.name}
                   </span>
@@ -85,16 +181,24 @@ export default async function WorkDetailPage({ params }: Props) {
         </div>
       </div>
 
+      {/* 作品情報(説明文) */}
       {item.comment && (
-        <section>
-          <h2 className="mb-2 text-sm font-semibold text-muted">作品情報</h2>
-          <p className="whitespace-pre-wrap text-sm leading-relaxed">{item.comment}</p>
+        <section className="rounded-xl border border-border bg-surface p-6">
+          <h2 className="mb-3 text-sm font-bold tracking-wider text-muted uppercase">
+            作品情報
+          </h2>
+          <p className="whitespace-pre-wrap text-sm leading-relaxed">
+            {item.comment}
+          </p>
         </section>
       )}
 
+      {/* サンプル画像 */}
       {samples.length > 0 && (
         <section>
-          <h2 className="mb-2 text-sm font-semibold text-muted">サンプル画像</h2>
+          <h2 className="mb-3 text-sm font-bold tracking-wider text-muted uppercase">
+            サンプル画像
+          </h2>
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4">
             {samples.map((src, i) => (
               // eslint-disable-next-line @next/next/no-img-element
@@ -102,13 +206,30 @@ export default async function WorkDetailPage({ params }: Props) {
                 key={i}
                 src={src}
                 alt={`sample ${i + 1}`}
-                className="w-full rounded border border-border"
+                className="w-full rounded-lg border border-border"
                 loading="lazy"
               />
             ))}
           </div>
         </section>
       )}
+
+      {/* 再CTA */}
+      <section className="rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 via-surface to-surface p-6 text-center md:p-8">
+        <p className="text-sm text-muted">
+          中身が気になったら、FANZAで詳細・サンプル動画をチェック
+        </p>
+        <a
+          href={item.affiliateURL || item.URL}
+          target="_blank"
+          rel="noopener sponsored"
+          className="mt-4 inline-flex h-12 items-center gap-2 rounded-lg bg-primary px-8 text-sm font-bold text-white transition hover:bg-primary-2"
+        >
+          FANZAで見る
+          <span aria-hidden>→</span>
+        </a>
+        <p className="mt-2 text-[10px] text-muted">PR / 広告</p>
+      </section>
     </article>
   );
 }

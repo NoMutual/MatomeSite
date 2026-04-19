@@ -13,9 +13,12 @@ export function AgeGate() {
   if (confirmed === null || confirmed) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 px-4">
-      <div className="w-full max-w-md rounded-lg border border-border bg-surface p-6 text-center">
-        <h2 className="text-lg font-bold">年齢確認</h2>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 px-4 backdrop-blur">
+      <div className="w-full max-w-md rounded-2xl border border-border bg-surface p-8 text-center shadow-2xl">
+        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+          <span className="text-xl font-black">18+</span>
+        </div>
+        <h2 className="mt-4 text-lg font-bold">年齢確認</h2>
         <p className="mt-3 text-sm text-muted">
           当サイトはアダルト商品を紹介しています。
           <br />
@@ -28,13 +31,13 @@ export function AgeGate() {
               localStorage.setItem(STORAGE_KEY, "1");
               setConfirmed(true);
             }}
-            className="rounded bg-accent py-2 font-medium text-white hover:opacity-90"
+            className="h-11 rounded-lg bg-primary font-bold text-white transition hover:bg-primary-2"
           >
             18歳以上
           </button>
           <a
             href="https://www.google.com"
-            className="rounded border border-border py-2 text-center"
+            className="flex h-11 items-center justify-center rounded-lg border border-border text-sm text-muted hover:border-muted"
           >
             18歳未満
           </a>

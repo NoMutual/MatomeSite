@@ -1,12 +1,23 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #0b0b0e;
-  --color-surface: #16161b;
+  --color-bg: #0b0b0f;
+  --color-surface: #16161d;
+  --color-surface-2: #1f1f28;
   --color-border: #2a2a33;
-  --color-text: #e6e6ea;
-  --color-muted: #8a8a94;
-  --color-accent: #ff3366;
+  --color-text: #f5f5f7;
+  --color-muted: #9a9aa5;
+  --color-primary: #ff2b85;
+  --color-primary-2: #ff4d9e;
+  --color-accent: #ffb400;
+  --color-danger: #e53e3e;
+  --color-success: #16c784;
+
+  --font-sans: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic",
+    Meiryo, sans-serif;
+  --font-display: "Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif;
+
+  --breakpoint-xs: 480px;
 }
 
 :root {
@@ -17,8 +28,10 @@ html,
 body {
   background: var(--color-bg);
   color: var(--color-text);
-  font-family: ui-sans-serif, system-ui, -apple-system, "Hiragino Kaku Gothic ProN",
-    "Hiragino Sans", Meiryo, sans-serif;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
 }
 
 * {
@@ -28,4 +41,29 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+/* スクロールバーを細く */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-muted);
+}
+
+/* 共通ユーティリティ */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 43, 133, 0.15);
 }
