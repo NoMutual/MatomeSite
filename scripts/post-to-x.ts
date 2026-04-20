@@ -100,12 +100,25 @@ function buildTweetText(item: DugaItem, tags: string[]): string {
   return lines.join("\n");
 }
 
+/**
+ * DUGA サンプル動画はおおむね 30秒前後で 5〜15MB。
+ * X API 制限 (140秒/512MB) を超える異常値が来たらスキップ。
+ * 動画の加工を避けるため、サイズで粗く判定。
+ */
+const MAX_VIDEO_BYTES = 50 * 1024 * 1024; // 50MB (安全余裕)
+
 async function downloadVideo(url: string): Promise<Buffer> {
   console.log(`downloading video: ${url}`);
   const res = await fetch(url);
   if (!res.ok) throw new Error(`video download failed: ${res.status}`);
   const buf = Buffer.from(await res.arrayBuffer());
-  console.log(`downloaded ${(buf.length / 1024 / 1024).toFixed(2)} MB`);
+  const mb = buf.length / 1024 / 1024;
+  console.log(`downloaded ${mb.toFixed(2)} MB`);
+  if (buf.length > MAX_VIDEO_BYTES) {
+    throw new Error(
+      `動画サイズ ${mb.toFixed(1)}MB が閾値(${MAX_VIDEO_BYTES / 1024 / 1024}MB)超。X の 140秒制限抵触の恐れ。加工禁止のため投稿スキップ。`,
+    );
+  }
   return buf;
 }
 
@@ -140,9 +153,18 @@ async function main() {
   const text = buildTweetText(pick.item, pick.tags);
   console.log(`\n=== tweet ===\n${text}\n============\n`);
 
+  // DUGA規約ガード: 本文にアフィリエイトリンクが含まれているか確認
+  // (サンプル動画はアフィリエイトリンクと必ずセットで投稿する義務)
+  const affiliate = getAffiliateLink(pick.item);
+  if (!text.includes(affiliate) && !text.includes("click.duga.jp")) {
+    throw new Error(
+      "規約違反防止: ツイート本文にDUGAアフィリエイトリンクが無いため投稿中止",
+    );
+  }
+
   const client = new TwitterApi({ appKey, appSecret, accessToken, accessSecret });
 
-  // 動画ダウンロード → X にアップロード → ツイート投稿
+  // 動画ダウンロード → X にアップロード → ツイート投稿 (加工なし)
   const videoBuf = await downloadVideo(videoUrl);
   console.log("uploading to X...");
   const mediaId = await client.v1.uploadMedia(videoBuf, {
@@ -156,6 +178,8 @@ async function main() {
   const result = await client.v2.tweet({
     text,
     media: { media_ids: [mediaId] },
+    // アダルトコンテンツのため NSFW フラグを明示
+    possibly_sensitive: true,
   });
   console.log(`posted tweet_id=${result.data.id}`);
 
