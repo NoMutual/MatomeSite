@@ -18,6 +18,7 @@ export function FacetSearch({ tagCounts }: Props) {
   const router = useRouter();
   const params = useSearchParams();
   const [pending, startTransition] = useTransition();
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const selectedTags = new Set((params.get("tags") ?? "").split(",").filter(Boolean));
   const keyword = params.get("keyword") ?? "";
@@ -57,13 +58,12 @@ export function FacetSearch({ tagCounts }: Props) {
 
   const activeCount = selectedTags.size + (keyword ? 1 : 0);
 
-  return (
-    <aside className="space-y-5">
+  const panel = (
+    <div className="space-y-5">
       {/* 絞り込み中バッジ + クリア */}
       <div className="flex items-center justify-between">
         <div className="text-xs text-muted">
-          絞り込み中:{" "}
-          <span className="font-bold text-text">{activeCount}</span>
+          絞り込み中: <span className="font-bold text-text">{activeCount}</span>
         </div>
         {activeCount > 0 && (
           <button
@@ -156,9 +156,59 @@ export function FacetSearch({ tagCounts }: Props) {
         },
       )}
 
-      {pending && (
-        <div className="text-xs text-muted">絞り込み中...</div>
+      {pending && <div className="text-xs text-muted">絞り込み中...</div>}
+    </div>
+  );
+
+  return (
+    <>
+      {/* デスクトップ：インラインサイドバー */}
+      <aside className="hidden lg:block">{panel}</aside>
+
+      {/* モバイル：固定FAB + ドロワー */}
+      <button
+        type="button"
+        onClick={() => setDrawerOpen(true)}
+        className="fixed bottom-5 left-1/2 z-30 flex h-12 -translate-x-1/2 items-center gap-2 rounded-full bg-primary px-6 text-sm font-bold text-white shadow-xl shadow-primary/30 lg:hidden"
+      >
+        <span>絞り込み</span>
+        {activeCount > 0 && (
+          <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-white px-1.5 text-[11px] font-black text-primary">
+            {activeCount}
+          </span>
+        )}
+      </button>
+
+      {drawerOpen && (
+        <div className="fixed inset-0 z-40 flex flex-col justify-end lg:hidden">
+          <div
+            aria-hidden
+            onClick={() => setDrawerOpen(false)}
+            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+          />
+          <div className="relative max-h-[85vh] overflow-y-auto rounded-t-2xl border-t border-border bg-surface p-5 pb-24">
+            <div className="sticky top-0 -mx-5 mb-4 flex items-center justify-between border-b border-border bg-surface px-5 pb-3">
+              <h2 className="text-base font-bold">絞り込み</h2>
+              <button
+                type="button"
+                onClick={() => setDrawerOpen(false)}
+                className="text-sm text-muted hover:text-text"
+                aria-label="閉じる"
+              >
+                ✕
+              </button>
+            </div>
+            {panel}
+            <button
+              type="button"
+              onClick={() => setDrawerOpen(false)}
+              className="fixed bottom-5 left-1/2 h-12 -translate-x-1/2 rounded-full bg-primary px-8 text-sm font-bold text-white shadow-xl shadow-primary/30"
+            >
+              結果を見る
+            </button>
+          </div>
+        </div>
       )}
-    </aside>
+    </>
   );
 }

@@ -1,6 +1,11 @@
 import type { DmmItem, DmmItemListResponse } from "./types";
+import { findSampleItem, getSampleItems } from "./sample-works";
 
 const API_BASE = "https://api.dmm.com/affiliate/v3/ItemList";
+
+function hasCreds(): boolean {
+  return Boolean(process.env.DMM_API_ID && process.env.DMM_AFFILIATE_ID);
+}
 
 export type DmmQuery = {
   hits?: number;
@@ -26,6 +31,23 @@ function getCreds() {
 export async function fetchAmateurItems(
   query: DmmQuery = {},
 ): Promise<DmmItemListResponse["result"]> {
+  // APIキーが無い時はサンプルデータにフォールバック
+  if (!hasCreds()) {
+    const samples = getSampleItems();
+    const hits = query.hits ?? 30;
+    const offset = Math.max(0, (query.offset ?? 1) - 1);
+    const sliced = query.keyword
+      ? samples.filter((s) => s.title.includes(query.keyword!))
+      : samples;
+    return {
+      status: 200,
+      result_count: Math.min(sliced.length - offset, hits),
+      total_count: sliced.length,
+      first_position: offset + 1,
+      items: sliced.slice(offset, offset + hits),
+    };
+  }
+
   const { api_id, affiliate_id } = getCreds();
   const params = new URLSearchParams({
     api_id,
@@ -57,6 +79,9 @@ export async function fetchAmateurItems(
 }
 
 export async function fetchItemByCid(cid: string): Promise<DmmItem | null> {
+  if (!hasCreds()) {
+    return findSampleItem(cid) ?? null;
+  }
   const result = await fetchAmateurItems({ cid, hits: 1 });
   return result.items[0] ?? null;
 }

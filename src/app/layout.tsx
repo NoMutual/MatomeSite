@@ -5,8 +5,10 @@ import { Footer } from "@/components/Footer";
 import { AgeGate } from "@/components/AgeGate";
 
 const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "素人系ナビ";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: `${siteName} | タイトルじゃ分からない素人系を、中身で探す`,
     template: `%s | ${siteName}`,
@@ -14,6 +16,15 @@ export const metadata: Metadata = {
   description:
     "FANZA の素人系作品を女の子のタイプ・シチュエーション・撮影スタイルで絞り込んで探せるデータベース。",
   robots: { index: true, follow: true },
+  openGraph: {
+    type: "website",
+    locale: "ja_JP",
+    siteName,
+    url: siteUrl,
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -47,3 +47,23 @@ export function getTagCounts(): Map<string, number> {
   }
   return counts;
 }
+
+/**
+ * 指定 cid と最もタグが重なる作品を返す
+ */
+export function getRelatedWorks(cid: string, limit = 6): TaggedWork[] {
+  const source = store.items[cid];
+  if (!source || source.tags.length === 0) return [];
+  const sourceTags = new Set(source.tags);
+
+  return Object.entries(store.items)
+    .filter(([id]) => id !== cid)
+    .map(([id, v]) => {
+      const overlap = v.tags.filter((t) => sourceTags.has(t)).length;
+      return { cid: id, overlap, ...v };
+    })
+    .filter((w) => w.overlap > 0)
+    .sort((a, b) => b.overlap - a.overlap || b.date.localeCompare(a.date))
+    .slice(0, limit)
+    .map(({ overlap: _overlap, ...w }) => w);
+}

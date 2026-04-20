@@ -1,0 +1,15 @@
+{
+  "_description": "APIが使えない間のサンプル作品データ。FANZA公開情報（タイトル・パッケ画像URL・価格）を手動で投入。審査後はこのファイルを空配列にしてAPIデータに切り替える。",
+  "_schema": {
+    "content_id": "DMM cid (例: abw00123)",
+    "title": "作品タイトル",
+    "date": "発売日 YYYY-MM-DD",
+    "URL": "FANZA商品ページURL (https://www.dmm.co.jp/... )",
+    "imageURL.large": "パッケージ画像URL",
+    "comment": "商品説明文",
+    "iteminfo.label[].name": "レーベル名",
+    "iteminfo.genre[].name": "ジャンル名（DMM公式）",
+    "prices.price": "価格表示 (例: 980円)"
+  },
+  "items": []
+}

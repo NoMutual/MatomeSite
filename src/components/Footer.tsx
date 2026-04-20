@@ -22,17 +22,70 @@ export function Footer() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 text-sm md:grid-cols-4">
-            {categories.map(([slug, label]) => (
-              <div key={slug}>
-                <Link
-                  href={`/tags/${slug}`}
-                  className="font-medium text-text hover:text-primary"
-                >
-                  {label}
-                </Link>
+          <div className="grid gap-6 sm:grid-cols-3">
+            <div>
+              <div className="mb-2 text-[11px] font-semibold tracking-wider text-muted uppercase">
+                探す
               </div>
-            ))}
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <Link href="/works" className="hover:text-primary">
+                    作品を探す
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/tags" className="hover:text-primary">
+                    タグ一覧
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/guides" className="hover:text-primary">
+                    ガイド
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <div className="mb-2 text-[11px] font-semibold tracking-wider text-muted uppercase">
+                カテゴリ
+              </div>
+              <ul className="space-y-2 text-sm">
+                {categories.map(([slug, label]) => (
+                  <li key={slug}>
+                    <Link href={`/tags/${slug}`} className="hover:text-primary">
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <div className="mb-2 text-[11px] font-semibold tracking-wider text-muted uppercase">
+                サイト情報
+              </div>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <Link href="/about" className="hover:text-primary">
+                    サイトについて
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/about/privacy" className="hover:text-primary">
+                    プライバシーポリシー
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/about/disclaimer" className="hover:text-primary">
+                    免責事項・広告表記
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/about/contact" className="hover:text-primary">
+                    お問い合わせ
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 

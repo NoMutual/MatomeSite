@@ -5,7 +5,7 @@ import { TAG_CATEGORY_LABEL, TAGS } from "@/lib/tags";
 import type { TagCategory } from "@/lib/types";
 import { getTagCounts } from "@/lib/work-tags-store";
 
-export const revalidate = 60 * 60 * 6;
+export const revalidate = 21600;
 
 export default async function HomePage() {
   let items: Awaited<ReturnType<typeof fetchAmateurItems>>["items"] = [];

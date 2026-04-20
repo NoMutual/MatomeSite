@@ -1,11 +1,8 @@
 import Link from "next/link";
-import { TAG_CATEGORY_LABEL } from "@/lib/tags";
 
 const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "素人系ナビ";
 
 export function Header() {
-  const categories = Object.entries(TAG_CATEGORY_LABEL);
-
   return (
     <header className="sticky top-0 z-30 border-b border-border bg-bg/85 backdrop-blur-md">
       <div className="mx-auto flex max-w-[1280px] items-center gap-6 px-4 py-3 md:px-6 lg:px-8">
@@ -22,15 +19,12 @@ export function Header() {
           <Link href="/works" className="transition hover:text-text">
             作品を探す
           </Link>
-          {categories.map(([slug, label]) => (
-            <Link
-              key={slug}
-              href={`/tags/${slug}`}
-              className="transition hover:text-text"
-            >
-              {label}
-            </Link>
-          ))}
+          <Link href="/tags" className="transition hover:text-text">
+            タグ一覧
+          </Link>
+          <Link href="/guides" className="transition hover:text-text">
+            ガイド
+          </Link>
         </nav>
 
         <form action="/works" method="get" className="ml-auto hidden md:block">

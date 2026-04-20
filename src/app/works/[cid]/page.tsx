@@ -2,9 +2,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { fetchItemByCid, getSampleImages, getThumbnail } from "@/lib/dmm";
 import { TAG_BY_SLUG, TAG_CATEGORY_LABEL } from "@/lib/tags";
-import { getTagsForWork } from "@/lib/work-tags-store";
+import { getRelatedWorks, getTagsForWork } from "@/lib/work-tags-store";
+import { WorkCard } from "@/components/WorkCard";
 
-export const revalidate = 60 * 60 * 24;
+export const revalidate = 86400;
 
 type Props = { params: Promise<{ cid: string }> };
 
@@ -45,6 +46,8 @@ export default async function WorkDetailPage({ params }: Props) {
       customTagsByCategory.set(t.category, []);
     customTagsByCategory.get(t.category)!.push(t);
   }
+
+  const relatedWorks = getRelatedWorks(cid, 6);
 
   return (
     <article className="space-y-8">
@@ -209,6 +212,20 @@ export default async function WorkDetailPage({ params }: Props) {
                 className="w-full rounded-lg border border-border"
                 loading="lazy"
               />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* 関連作品 */}
+      {relatedWorks.length > 0 && (
+        <section>
+          <h2 className="mb-3 text-sm font-bold tracking-wider text-muted uppercase">
+            タグが似ている作品
+          </h2>
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4 lg:grid-cols-6">
+            {relatedWorks.map((w) => (
+              <WorkCard key={w.cid} work={w} />
             ))}
           </div>
         </section>
