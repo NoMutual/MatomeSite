@@ -6,11 +6,13 @@ import {
   getReleaseDate,
   getReviewScore,
   getSampleImages,
+  getSampleMovieUrl,
   getThumbnail,
 } from "@/lib/duga";
 import { TAG_BY_SLUG, TAG_CATEGORY_LABEL } from "@/lib/tags";
 import { getRelatedWorks, getTagsForWork } from "@/lib/work-tags-store";
 import { WorkCard } from "@/components/WorkCard";
+import { SampleMoviePlayer } from "@/components/SampleMoviePlayer";
 
 export const revalidate = 86400;
 
@@ -43,6 +45,7 @@ export default async function WorkDetailPage({ params }: Props) {
 
   const thumb = getThumbnail(item);
   const samples = getSampleImages(item);
+  const sampleMovie = getSampleMovieUrl(item);
   const review = getReviewScore(item);
   const releaseDate = getReleaseDate(item);
   const affiliate = getAffiliateLink(item);
@@ -75,17 +78,14 @@ export default async function WorkDetailPage({ params }: Props) {
         <span className="text-text">{productid}</span>
       </nav>
 
-      {/* ヘッダー部: サムネ + 情報 */}
-      <div className="grid gap-6 md:grid-cols-[minmax(260px,340px)_1fr] md:gap-8">
+      {/* ヘッダー部: サムネ/動画 + 情報 */}
+      <div className="grid gap-6 md:grid-cols-[minmax(320px,480px)_1fr] md:gap-8">
         <div className="space-y-3">
-          {thumb && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={thumb}
-              alt={item.title}
-              className="w-full rounded-xl border border-border"
-            />
-          )}
+          <SampleMoviePlayer
+            thumbnail={thumb}
+            videoUrl={sampleMovie}
+            title={item.title}
+          />
         </div>
 
         <div className="space-y-5">
