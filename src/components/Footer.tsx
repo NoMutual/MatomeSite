@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { TAG_CATEGORY_LABEL } from "@/lib/tags";
 
@@ -10,12 +11,13 @@ export function Footer() {
       <div className="mx-auto max-w-[1280px] px-4 py-10 md:px-6 lg:px-8">
         <div className="grid gap-8 md:grid-cols-[1fr_2fr]">
           <div>
-            <div className="flex items-center gap-2">
-              <span className="flex h-7 w-7 items-center justify-center rounded-md bg-primary text-xs font-black text-white">
-                素
-              </span>
-              <span className="font-bold">{siteName}</span>
-            </div>
+            <Image
+              src="/logo.png"
+              alt={siteName}
+              width={600}
+              height={315}
+              className="h-10 w-auto"
+            />
             <p className="mt-3 text-xs leading-relaxed text-muted">
               素人をただ極めて行け。
               <br />

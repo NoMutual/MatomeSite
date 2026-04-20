@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "素人の極み";
@@ -6,13 +7,19 @@ export function Header() {
   return (
     <header className="sticky top-0 z-30 border-b border-border bg-bg/85 backdrop-blur-md">
       <div className="mx-auto flex max-w-[1280px] items-center gap-6 px-4 py-3 md:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-2">
-          <span className="flex h-7 w-7 items-center justify-center rounded-md bg-primary text-xs font-black text-white">
-            素
-          </span>
-          <span className="text-base font-bold tracking-tight md:text-lg">
-            {siteName}
-          </span>
+        <Link
+          href="/"
+          className="flex items-center"
+          aria-label={siteName}
+        >
+          <Image
+            src="/logo.png"
+            alt={siteName}
+            width={600}
+            height={315}
+            priority
+            className="h-10 w-auto md:h-12"
+          />
         </Link>
 
         <nav className="hidden flex-1 items-center gap-5 text-sm text-muted md:flex">
