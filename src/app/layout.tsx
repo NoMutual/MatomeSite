@@ -6,7 +6,7 @@ import { AgeGate } from "@/components/AgeGate";
 
 const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "素人の極み";
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://matomesite.ima0hiro.workers.dev";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://shirouto-kiwami.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

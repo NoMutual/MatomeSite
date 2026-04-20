@@ -5,7 +5,7 @@ import type { TagCategory } from "@/lib/types";
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
-  "https://matomesite.ima0hiro.workers.dev";
+  "https://shirouto-kiwami.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
