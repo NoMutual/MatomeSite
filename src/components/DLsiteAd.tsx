@@ -72,8 +72,8 @@ export function DLsiteAd({
         <PlaceholderVisual tone={tone} />
       )}
 
-      {/* 右上の超小さい PR マーク（規約対応、文字は最小限） */}
-      <span className="pointer-events-none absolute right-1 top-1 rounded bg-black/60 px-1 py-0.5 text-[9px] leading-none text-white/80 backdrop-blur">
+      {/* 右上の PR マーク（景表法ステマ規制・明瞭表示に準拠） */}
+      <span className="pointer-events-none absolute right-1.5 top-1.5 rounded-md bg-black/80 px-1.5 py-0.5 text-xs font-bold leading-none text-white backdrop-blur">
         PR
       </span>
     </a>
