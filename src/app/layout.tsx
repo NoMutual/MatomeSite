@@ -5,7 +5,8 @@ import { Footer } from "@/components/Footer";
 import { AgeGate } from "@/components/AgeGate";
 
 const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "素人の極み";
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://matomesite.ima0hiro.workers.dev";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

@@ -4,7 +4,8 @@ import { getAllTaggedWorks } from "@/lib/work-tags-store";
 import type { TagCategory } from "@/lib/types";
 
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ?? "http://localhost:3000";
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
+  "https://matomesite.ima0hiro.workers.dev";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
