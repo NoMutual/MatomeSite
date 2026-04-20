@@ -2,6 +2,7 @@ import { fetchAmateurItems } from "@/lib/duga";
 import { WorkCard } from "@/components/WorkCard";
 import { FacetSearch } from "@/components/FacetSearch";
 import { Pagination } from "@/components/Pagination";
+import { DLsiteAdSidebar } from "@/components/DLsiteAd";
 import {
   getAllTaggedWorks,
   getTagCounts,
@@ -83,11 +84,13 @@ export default async function WorksPage({ searchParams }: Props) {
   };
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[260px_1fr] lg:gap-8">
+    <div className="grid gap-6 lg:grid-cols-[240px_1fr_200px] lg:gap-6">
+      {/* 左: ファセット検索 */}
       <div className="lg:sticky lg:top-[4.5rem] lg:self-start">
         <FacetSearch tagCounts={tagCounts} />
       </div>
 
+      {/* 中央: 作品一覧 */}
       <div className="min-w-0 space-y-4">
         <div className="flex items-center justify-between">
           <h1 className="text-xl font-bold md:text-2xl">作品を探す</h1>
@@ -124,7 +127,7 @@ export default async function WorksPage({ searchParams }: Props) {
 
         {useLocal && works.length > 0 && (
           <>
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4 lg:grid-cols-4 xl:grid-cols-5">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4">
               {works.map((w) => (
                 <WorkCard key={w.productid} work={w} />
               ))}
@@ -139,7 +142,7 @@ export default async function WorksPage({ searchParams }: Props) {
 
         {!useLocal && apiItems.length > 0 && (
           <>
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4 lg:grid-cols-4 xl:grid-cols-5">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4">
               {apiItems.map((item) => (
                 <WorkCard key={item.productid} item={item} />
               ))}
@@ -151,6 +154,11 @@ export default async function WorksPage({ searchParams }: Props) {
             />
           </>
         )}
+      </div>
+
+      {/* 右: DLsite 広告 */}
+      <div className="lg:sticky lg:top-[4.5rem] lg:self-start">
+        <DLsiteAdSidebar side="right" />
       </div>
     </div>
   );
