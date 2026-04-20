@@ -1,73 +1,48 @@
-import type { Tag } from "../types";
+import type { Tag } from "../types.ts";
 
 /**
- * 公式ジャンル名 → 独自タグ slug のマッピング
- * ItemList API が返す iteminfo.genre[].name との完全一致で判定
+ * DUGA カテゴリID → 独自タグ slug のマッピング
+ * item.category[].data.id との完全一致で判定
  */
-export const GENRE_TO_TAGS: Record<string, Tag["slug"][]> = {
-  // situation - 出会い方
-  ナンパ: ["nampa"],
-  素人ナンパ: ["nampa"],
-  マッチングアプリ: ["matching"],
-  モニター企画: ["monitor"],
-  モニタリング: ["monitor"],
-  パパ活: ["papakatsu"],
-  逆ナンパ: ["gyakunan"],
-  // situation - 初性
-  初撮り: ["hatsudori"],
-  素人初撮り: ["hatsudori"],
-  デビュー作品: ["debut"],
-  "AV女優": [],
-
-  // girl_type - 属性
-  女子大生: ["joshidai"],
-  人妻: ["hitozuma"],
-  若妻: ["hitozuma"],
-  ママ: ["hitozuma"],
-  熟女: ["jukujo"],
-
-  // girl_type - ルックス
-  ギャル: ["gyaru"],
-  "ギャル・ギャル系": ["gyaru"],
-  美少女: ["bijin"],
-  童顔: ["dougan"],
-  "ハーフ・クォーター": ["half"],
-
-  // girl_type - 体型
-  巨乳: ["kyonyu"],
-  爆乳: ["bakunyu"],
-  貧乳: ["binyu"],
-  微乳: ["binyu"],
-  スレンダー: ["slender"],
-  ぽっちゃり: ["pocchari"],
-  色白: ["shiroi"],
-  色黒: ["hiyake"],
-
-  // shooting_style
-  ハメ撮り: ["pov"],
-  個人撮影: ["gachi"],
-  ドキュメンタリー: ["doc"],
-  "ドキュメント": ["doc"],
-
-  // place_mood
-  野外・露出: ["outdoor"],
-  カーセックス: ["car"],
+export const DUGA_CATEGORY_TO_TAGS: Record<string, Tag["slug"][]> = {
+  // 01=素人 はメインフロアなのでタグ付けしない
+  "0101": ["hitozuma"], // 妊婦 → 人妻系の便宜上
+  "03": ["gachi"], // 盗撮 → ガチ感
+  "07": ["jukujo"], // 熟女
+  "09": ["joshidai"], // 女子大生/女子高生
+  "10": [], // コスプレ（独自タグに無いので空）
+  "21": [], // オナニー（独自タグに無いので空）
+  "23": ["monitor"], // 企画 → モニター企画
+  // 100番台の属性タグ
+  "100005": [], // 近親相姦
+  "100009": [], // 痴女
+  "100010": ["roshutsu"], // 露出
+  "100022": ["pocchari"], // ぽっちゃり
+  "100025": ["gyaru"], // ギャル
+  "100027": [], // 下着
+  "100028": [], // 水着
+  "100035": ["fukugyou"], // 風俗嬢 → 副業軸
+  "100038": ["kyonyu"], // 母乳 → 巨乳
+  "100041": ["binyu"], // 貧乳
 };
 
 /**
- * レーベル名 → 独自タグ slug のマッピング
+ * DUGA レーベル名 → 独自タグ slug のマッピング
  * 部分一致（レーベル名に含まれていればマッチ）
  */
 export const LABEL_HINT_TAGS: Array<{ pattern: RegExp; tags: Tag["slug"][] }> = [
-  { pattern: /シロウトTV|素人TV|ナンパTV/, tags: ["nampa", "doc"] },
-  { pattern: /MM号|マジックミラー/, tags: ["nampa", "monitor"] },
-  { pattern: /プレステージ.*素人/, tags: ["high-res"] },
-  { pattern: /マッチ(ン|ング)/, tags: ["matching"] },
+  { pattern: /プレステージ|PRESTIGE/i, tags: ["high-res"] },
+  { pattern: /ナンパTV|シロウトTV/i, tags: ["nampa", "doc"] },
+  { pattern: /マジックミラー|MM号/, tags: ["nampa", "monitor"] },
+  { pattern: /素人.*ナンパ|ナンパ.*素人/, tags: ["nampa"] },
+  { pattern: /ドキュメン[トタ]/, tags: ["doc"] },
+  { pattern: /個撮|個人撮影/, tags: ["gachi", "pov"] },
+  { pattern: /投稿/, tags: ["gachi"] },
+  { pattern: /ハメ撮り/, tags: ["pov"] },
 ];
 
 /**
- * comment (商品説明) へのキーワード正規表現 → 独自タグ slug
- * 説明文に含まれていればタグを付与
+ * caption (商品説明) へのキーワード正規表現 → 独自タグ slug
  */
 export const COMMENT_PATTERNS: Array<{ pattern: RegExp; tags: Tag["slug"][] }> = [
   // 場所
@@ -128,5 +103,5 @@ export const COMMENT_PATTERNS: Array<{ pattern: RegExp; tags: Tag["slug"][] }> =
   { pattern: /スマホ撮影|iPhone撮影/, tags: ["smartphone"] },
   { pattern: /縦画面|縦撮り/, tags: ["tategami"] },
   { pattern: /ドキュメン[トタ]/, tags: ["doc"] },
-  { pattern: /ガチ(素人|の素人|ンコ)/, tags: ["gachi"] },
+  { pattern: /ガチ(素人|の素人|ンコ)|個撮|個人撮影|投稿/, tags: ["gachi"] },
 ];

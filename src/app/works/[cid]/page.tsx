@@ -1,6 +1,13 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { fetchItemByCid, getSampleImages, getThumbnail } from "@/lib/dmm";
+import {
+  fetchItemById,
+  getAffiliateLink,
+  getReleaseDate,
+  getReviewScore,
+  getSampleImages,
+  getThumbnail,
+} from "@/lib/duga";
 import { TAG_BY_SLUG, TAG_CATEGORY_LABEL } from "@/lib/tags";
 import { getRelatedWorks, getTagsForWork } from "@/lib/work-tags-store";
 import { WorkCard } from "@/components/WorkCard";
@@ -12,19 +19,19 @@ type Props = { params: Promise<{ cid: string }> };
 export async function generateMetadata({ params }: Props) {
   const { cid } = await params;
   try {
-    const item = await fetchItemByCid(cid);
+    const item = await fetchItemById(cid);
     if (!item) return { title: "作品が見つかりません" };
-    return { title: item.title, description: item.comment?.slice(0, 120) };
+    return { title: item.title, description: item.caption?.slice(0, 120) };
   } catch {
     return { title: "作品情報" };
   }
 }
 
 export default async function WorkDetailPage({ params }: Props) {
-  const { cid } = await params;
+  const { cid: productid } = await params;
   let item;
   try {
-    item = await fetchItemByCid(cid);
+    item = await fetchItemById(productid);
   } catch (e) {
     return (
       <div className="rounded-xl border border-border bg-surface p-6 text-sm text-muted">
@@ -36,7 +43,11 @@ export default async function WorkDetailPage({ params }: Props) {
 
   const thumb = getThumbnail(item);
   const samples = getSampleImages(item);
-  const customTags = getTagsForWork(cid)
+  const review = getReviewScore(item);
+  const releaseDate = getReleaseDate(item);
+  const affiliate = getAffiliateLink(item);
+
+  const customTags = getTagsForWork(productid)
     .map((slug) => TAG_BY_SLUG.get(slug))
     .filter((t): t is NonNullable<typeof t> => Boolean(t));
 
@@ -47,7 +58,7 @@ export default async function WorkDetailPage({ params }: Props) {
     customTagsByCategory.get(t.category)!.push(t);
   }
 
-  const relatedWorks = getRelatedWorks(cid, 6);
+  const relatedWorks = getRelatedWorks(productid, 6);
 
   return (
     <article className="space-y-8">
@@ -61,7 +72,7 @@ export default async function WorkDetailPage({ params }: Props) {
           作品
         </Link>
         {" / "}
-        <span className="text-text">{cid}</span>
+        <span className="text-text">{productid}</span>
       </nav>
 
       {/* ヘッダー部: サムネ + 情報 */}
@@ -80,45 +91,43 @@ export default async function WorkDetailPage({ params }: Props) {
         <div className="space-y-5">
           <div>
             <div className="flex flex-wrap items-center gap-2">
-              {item.iteminfo?.label?.[0] && (
+              {item.label?.[0] && (
                 <span className="rounded-md border border-border bg-bg px-2 py-0.5 text-[11px] text-muted">
-                  {item.iteminfo.label[0].name}
+                  {item.label[0].name}
                 </span>
               )}
-              {item.review && (
+              {review && (
                 <span className="flex items-center gap-0.5 text-xs text-muted">
                   <span className="text-accent">★</span>
-                  <span className="font-bold text-text">{item.review.average}</span>
-                  <span>({item.review.count})</span>
+                  <span className="font-bold text-text">{review.average}</span>
+                  <span>({review.count})</span>
                 </span>
               )}
-              <span className="text-xs text-muted">
-                発売 {item.date?.slice(0, 10)}
-              </span>
+              <span className="text-xs text-muted">発売 {releaseDate}</span>
             </div>
             <h1 className="mt-3 text-2xl font-black leading-tight md:text-3xl">
               {item.title}
             </h1>
-            {item.iteminfo?.actress && item.iteminfo.actress.length > 0 && (
+            {item.performer && item.performer.length > 0 && (
               <div className="mt-2 text-sm text-muted">
-                出演:{" "}
-                {item.iteminfo.actress.map((a) => a.name).join(" / ")}
+                出演: {item.performer.map((p) => p.name).join(" / ")}
               </div>
+            )}
+            {item.makername && (
+              <div className="mt-1 text-xs text-muted">メーカー: {item.makername}</div>
             )}
           </div>
 
           {/* 価格 + CTA */}
           <div className="rounded-xl border border-border bg-surface p-5">
             <div className="flex items-baseline justify-between">
-              <span className="text-xs tracking-wider text-muted uppercase">
-                価格
-              </span>
+              <span className="text-xs tracking-wider text-muted uppercase">価格</span>
               <span className="text-2xl font-black text-primary">
-                {item.prices?.price ?? "—"}
+                {item.price ?? "—"}
               </span>
             </div>
             <a
-              href={item.affiliateURL || item.URL}
+              href={affiliate}
               target="_blank"
               rel="noopener sponsored"
               className="mt-4 flex h-12 w-full items-center justify-center gap-2 rounded-lg bg-primary text-sm font-bold text-white transition hover:bg-primary-2"
@@ -138,9 +147,7 @@ export default async function WorkDetailPage({ params }: Props) {
                 <div className="text-[11px] font-semibold tracking-wider text-primary uppercase">
                   独自タグ（中身の特徴）
                 </div>
-                <span className="text-[10px] text-muted">
-                  {customTags.length} 個
-                </span>
+                <span className="text-[10px] text-muted">{customTags.length} 個</span>
               </div>
               {[...customTagsByCategory.entries()].map(([cat, tags]) => (
                 <div key={cat}>
@@ -163,19 +170,19 @@ export default async function WorkDetailPage({ params }: Props) {
             </div>
           )}
 
-          {/* 公式ジャンル */}
-          {item.iteminfo?.genre && item.iteminfo.genre.length > 0 && (
+          {/* DUGA カテゴリ */}
+          {item.category && item.category.length > 0 && (
             <div>
               <div className="mb-2 text-[11px] font-semibold tracking-wider text-muted uppercase">
-                公式ジャンル
+                DUGA カテゴリ
               </div>
               <div className="flex flex-wrap gap-1.5">
-                {item.iteminfo.genre.map((g) => (
+                {item.category.map((c) => (
                   <span
-                    key={g.id}
+                    key={c.data.id}
                     className="rounded-md border border-border bg-bg px-2 py-1 text-xs text-muted"
                   >
-                    {g.name}
+                    {c.data.name}
                   </span>
                 ))}
               </div>
@@ -185,14 +192,12 @@ export default async function WorkDetailPage({ params }: Props) {
       </div>
 
       {/* 作品情報(説明文) */}
-      {item.comment && (
+      {item.caption && (
         <section className="rounded-xl border border-border bg-surface p-6">
           <h2 className="mb-3 text-sm font-bold tracking-wider text-muted uppercase">
             作品情報
           </h2>
-          <p className="whitespace-pre-wrap text-sm leading-relaxed">
-            {item.comment}
-          </p>
+          <p className="whitespace-pre-wrap text-sm leading-relaxed">{item.caption}</p>
         </section>
       )}
 
@@ -225,7 +230,7 @@ export default async function WorkDetailPage({ params }: Props) {
           </h2>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4 lg:grid-cols-6">
             {relatedWorks.map((w) => (
-              <WorkCard key={w.cid} work={w} />
+              <WorkCard key={w.productid} work={w} />
             ))}
           </div>
         </section>
@@ -237,7 +242,7 @@ export default async function WorkDetailPage({ params }: Props) {
           中身が気になったら、DUGAで詳細・サンプル動画をチェック
         </p>
         <a
-          href={item.affiliateURL || item.URL}
+          href={affiliate}
           target="_blank"
           rel="noopener sponsored"
           className="mt-4 inline-flex h-12 items-center gap-2 rounded-lg bg-primary px-8 text-sm font-bold text-white transition hover:bg-primary-2"

@@ -37,7 +37,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   const workPages: MetadataRoute.Sitemap = getAllTaggedWorks().map((w) => ({
-    url: `${SITE_URL}/works/${w.cid}`,
+    url: `${SITE_URL}/works/${w.productid}`,
     lastModified: w.date ? new Date(w.date) : now,
     changeFrequency: "monthly",
     priority: 0.5,

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { fetchAmateurItems } from "@/lib/dmm";
+import { fetchAmateurItems } from "@/lib/duga";
 import { WorkCard } from "@/components/WorkCard";
 import { TAG_CATEGORY_LABEL, TAGS } from "@/lib/tags";
 import type { TagCategory } from "@/lib/types";
@@ -12,7 +12,7 @@ export default async function HomePage() {
   let error: string | null = null;
 
   try {
-    const result = await fetchAmateurItems({ hits: 24, sort: "date" });
+    const result = await fetchAmateurItems({ hits: 24, sort: "new" });
     items = result.items;
   } catch (e) {
     error = e instanceof Error ? e.message : "不明なエラー";
@@ -106,7 +106,7 @@ export default async function HomePage() {
         {items.length > 0 && (
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 md:gap-4 lg:grid-cols-5 xl:grid-cols-6">
             {items.map((item) => (
-              <WorkCard key={item.content_id} item={item} />
+              <WorkCard key={item.productid} item={item} />
             ))}
           </div>
         )}

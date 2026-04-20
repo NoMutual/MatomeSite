@@ -1,4 +1,4 @@
-import { fetchAmateurItems } from "@/lib/dmm";
+import { fetchAmateurItems } from "@/lib/duga";
 import { WorkCard } from "@/components/WorkCard";
 import { FacetSearch } from "@/components/FacetSearch";
 import { Pagination } from "@/components/Pagination";
@@ -23,7 +23,7 @@ type Props = {
 
 export default async function WorksPage({ searchParams }: Props) {
   const params = await searchParams;
-  const sort = (params.sort as "date" | "rank" | "review") ?? "date";
+  const sort = (params.sort as "new" | "favorite" | "rating") ?? "new";
   const keyword = params.keyword ?? undefined;
   const selectedTags = (params.tags ?? "").split(",").filter(Boolean);
   const page = Math.max(1, Number(params.page ?? 1));
@@ -43,7 +43,7 @@ export default async function WorksPage({ searchParams }: Props) {
       if (keyword && !w.title.includes(keyword)) return false;
       return true;
     });
-    if (sort === "review") {
+    if (sort === "rating") {
       filtered.sort(
         (a, b) =>
           parseFloat(b.review?.average ?? "0") -
@@ -63,7 +63,7 @@ export default async function WorksPage({ searchParams }: Props) {
         offset,
       });
       apiItems = result.items;
-      total = result.total_count;
+      total = result.total;
     } catch (e) {
       error = e instanceof Error ? e.message : "不明なエラー";
     }
@@ -76,7 +76,7 @@ export default async function WorksPage({ searchParams }: Props) {
     const u = new URLSearchParams();
     if (keyword) u.set("keyword", keyword);
     if (selectedTags.length > 0) u.set("tags", selectedTags.join(","));
-    if (sort !== "date") u.set("sort", sort);
+    if (sort !== "new") u.set("sort", sort);
     if (p > 1) u.set("page", String(p));
     const qs = u.toString();
     return qs ? `/works?${qs}` : "/works";
@@ -126,7 +126,7 @@ export default async function WorksPage({ searchParams }: Props) {
           <>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4 lg:grid-cols-4 xl:grid-cols-5">
               {works.map((w) => (
-                <WorkCard key={w.cid} work={w} />
+                <WorkCard key={w.productid} work={w} />
               ))}
             </div>
             <Pagination
@@ -141,7 +141,7 @@ export default async function WorksPage({ searchParams }: Props) {
           <>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4 lg:grid-cols-4 xl:grid-cols-5">
               {apiItems.map((item) => (
-                <WorkCard key={item.content_id} item={item} />
+                <WorkCard key={item.productid} item={item} />
               ))}
             </div>
             <Pagination

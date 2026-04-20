@@ -1,4 +1,4 @@
-import type { Tag, TagCategory } from "./types";
+import type { Tag, TagCategory } from "./types.ts";
 
 export const TAG_CATEGORY_LABEL: Record<TagCategory, string> = {
   girl_type: "女の子のタイプ",

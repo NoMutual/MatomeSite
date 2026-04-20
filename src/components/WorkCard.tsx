@@ -1,37 +1,37 @@
 import Link from "next/link";
-import type { DmmItem } from "@/lib/types";
-import { getThumbnail } from "@/lib/dmm";
+import type { DugaItem } from "@/lib/types";
+import { getReleaseDate, getReviewScore, getThumbnail } from "@/lib/duga";
 import { TAG_BY_SLUG } from "@/lib/tags";
 import { getTagsForWork } from "@/lib/work-tags-store";
 
 type Props = {
-  item?: DmmItem;
+  item?: DugaItem;
   work?: {
-    cid: string;
+    productid: string;
     title: string;
     date: string;
     thumbnail?: string;
     price?: string;
     review?: { average: string; count: number };
-    actress?: string[];
+    performer?: string[];
     tags?: string[];
   };
 };
 
 /**
- * 作品カード。DmmItem または TaggedWork から表示できる。
+ * 作品カード。DugaItem または TaggedWork から表示できる。
  */
 export function WorkCard({ item, work }: Props) {
   const data = item
     ? {
-        cid: item.content_id,
+        productid: item.productid,
         title: item.title,
-        date: item.date?.slice(0, 10) ?? "",
+        date: getReleaseDate(item),
         thumbnail: getThumbnail(item),
-        price: item.prices?.price,
-        review: item.review,
-        actress: item.iteminfo?.actress?.map((a) => a.name),
-        tags: getTagsForWork(item.content_id),
+        price: item.price,
+        review: getReviewScore(item),
+        performer: item.performer?.map((p) => p.name),
+        tags: getTagsForWork(item.productid),
       }
     : work!;
 
@@ -42,7 +42,7 @@ export function WorkCard({ item, work }: Props) {
 
   return (
     <Link
-      href={`/works/${data.cid}`}
+      href={`/works/${data.productid}`}
       className="card-hover group block overflow-hidden rounded-xl border border-border bg-surface"
     >
       <div className="relative aspect-[3/4] w-full overflow-hidden bg-black/40">
@@ -73,9 +73,9 @@ export function WorkCard({ item, work }: Props) {
           {data.title}
         </h3>
 
-        {data.actress && data.actress.length > 0 && (
+        {data.performer && data.performer.length > 0 && (
           <div className="line-clamp-1 text-xs text-muted">
-            {data.actress.slice(0, 3).join(" / ")}
+            {data.performer.slice(0, 3).join(" / ")}
           </div>
         )}
 
