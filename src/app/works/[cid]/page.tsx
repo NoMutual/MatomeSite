@@ -118,25 +118,19 @@ export default async function WorkDetailPage({ params }: Props) {
             )}
           </div>
 
-          {/* 価格 + CTA */}
+          {/* CTA */}
           <div className="rounded-xl border border-border bg-surface p-5">
-            <div className="flex items-baseline justify-between">
-              <span className="text-xs tracking-wider text-muted uppercase">価格</span>
-              <span className="text-2xl font-black text-primary">
-                {item.price ?? "—"}
-              </span>
-            </div>
             <a
               href={affiliate}
               target="_blank"
               rel="noopener sponsored"
-              className="mt-4 flex h-12 w-full items-center justify-center gap-2 rounded-lg bg-primary text-sm font-bold text-white transition hover:bg-primary-2"
+              className="flex h-12 w-full items-center justify-center gap-2 rounded-lg bg-primary text-sm font-bold text-white transition hover:bg-primary-2"
             >
               DUGAで見る
               <span aria-hidden>→</span>
             </a>
             <p className="mt-2 text-center text-[10px] text-muted">
-              上記は広告リンク（PR）です。価格・販売状況は変動します。
+              上記は広告リンク（PR）です。価格・販売状況はリンク先でご確認ください。
             </p>
           </div>
 

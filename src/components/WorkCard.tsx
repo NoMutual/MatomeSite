@@ -95,11 +95,8 @@ export function WorkCard({ item, work }: Props) {
           </div>
         )}
 
-        <div className="flex items-end justify-between pt-1">
+        <div className="pt-1">
           <span className="text-[10px] text-muted">{data.date}</span>
-          {data.price && (
-            <span className="text-sm font-bold text-primary">{data.price}</span>
-          )}
         </div>
       </div>
     </Link>
