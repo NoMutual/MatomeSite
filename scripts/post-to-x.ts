@@ -175,11 +175,12 @@ async function main() {
   console.log(`media_id=${mediaId}`);
 
   console.log("posting tweet...");
+  // 注: アダルトコンテンツの sensitive フラグは X アカウント設定
+  // (プライバシーと安全 → 投稿するメディアをセンシティブとしてマーク)
+  // で全投稿に一律適用される前提。@NoMutual_MATOME では事前に ON 設定済。
   const result = await client.v2.tweet({
     text,
     media: { media_ids: [mediaId] },
-    // アダルトコンテンツのため NSFW フラグを明示
-    possibly_sensitive: true,
   });
   console.log(`posted tweet_id=${result.data.id}`);
 
