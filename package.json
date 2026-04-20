@@ -13,12 +13,14 @@
     "typecheck": "tsc --noEmit",
     "tag": "node --experimental-strip-types --env-file=.env.local scripts/tag-works.ts",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy"
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "post:x": "node --experimental-strip-types --env-file=.env.local scripts/post-to-x.ts"
   },
   "dependencies": {
     "next": "^16.2.4",
     "react": "^19.2.5",
-    "react-dom": "^19.2.5"
+    "react-dom": "^19.2.5",
+    "twitter-api-v2": "^1.29.0"
   },
   "devDependencies": {
     "@opennextjs/cloudflare": "^1.19.1",
