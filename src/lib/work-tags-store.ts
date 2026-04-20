@@ -95,6 +95,52 @@ export function getTagCounts(): Map<string, number> {
   return counts;
 }
 
+export type SearchOptions = {
+  tags?: string[];
+  keyword?: string;
+  sort?: "date" | "rating" | "favorite";
+};
+
+/**
+ * タグ・キーワードで作品を検索。title と caption 両方を対象。
+ */
+export function searchWorks(options: SearchOptions = {}): TaggedWork[] {
+  const { tags = [], keyword, sort = "date" } = options;
+  const kw = keyword?.trim();
+
+  let entries = Object.entries(store.items).filter(([, v]) => {
+    if (tags.length > 0 && !tags.every((t) => v.tags.includes(t))) return false;
+    if (kw) {
+      const inTitle = v.item.title.includes(kw);
+      const inCaption = (v.item.caption ?? "").includes(kw);
+      const inPerformer = (v.item.performer ?? []).some((p) =>
+        p.name?.includes(kw),
+      );
+      const inMaker = (v.item.makername ?? "").includes(kw);
+      if (!inTitle && !inCaption && !inPerformer && !inMaker) return false;
+    }
+    return true;
+  });
+
+  if (sort === "rating") {
+    entries.sort(
+      ([, a], [, b]) =>
+        parseFloat(b.item.review?.[0]?.score ?? "0") -
+        parseFloat(a.item.review?.[0]?.score ?? "0"),
+    );
+  } else if (sort === "favorite") {
+    entries.sort(
+      ([, a], [, b]) =>
+        parseInt(b.item.ranking?.[0]?.total?.replace(/,/g, "") ?? "0") -
+        parseInt(a.item.ranking?.[0]?.total?.replace(/,/g, "") ?? "0"),
+    );
+  } else {
+    entries.sort(([, a], [, b]) => b.date.localeCompare(a.date));
+  }
+
+  return entries.map(([pid, v]) => toTagged(pid, v));
+}
+
 /**
  * 指定 productid と最もタグが重なる作品を返す
  */

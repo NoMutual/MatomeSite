@@ -9,7 +9,7 @@ type Props = {
 };
 
 const SORT_OPTIONS = [
-  { value: "new", label: "新着順" },
+  { value: "date", label: "新着順" },
   { value: "favorite", label: "人気順" },
   { value: "rating", label: "レビュー順" },
 ] as const;
@@ -22,7 +22,7 @@ export function FacetSearch({ tagCounts }: Props) {
 
   const selectedTags = new Set((params.get("tags") ?? "").split(",").filter(Boolean));
   const keyword = params.get("keyword") ?? "";
-  const sort = params.get("sort") ?? "new";
+  const sort = params.get("sort") ?? "date";
   const [draftKeyword, setDraftKeyword] = useState(keyword);
 
   const update = (next: URLSearchParams) => {
