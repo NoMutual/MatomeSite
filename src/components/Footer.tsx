@@ -14,8 +14,8 @@ export function Footer() {
             <Image
               src="/logo.png"
               alt={siteName}
-              width={600}
-              height={315}
+              width={1408}
+              height={768}
               className="h-10 w-auto"
             />
             <p className="mt-3 text-xs leading-relaxed text-muted">
