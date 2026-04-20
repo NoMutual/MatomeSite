@@ -3,7 +3,12 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import type { DugaItem, DugaSearchResponse } from "../src/lib/types.ts";
 import { tagItem } from "../src/lib/tagger/index.ts";
-import { getReleaseDate, getReviewScore, getThumbnail } from "../src/lib/duga.ts";
+import {
+  getReleaseDate,
+  getReviewScore,
+  getSampleMovieUrl,
+  getThumbnail,
+} from "../src/lib/duga.ts";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT_PATH = resolve(__dirname, "../data/work-tags.json");
@@ -22,6 +27,7 @@ type WorkTags = {
       price?: string;
       review?: { average: string; count: number };
       performer?: string[];
+      sampleMovie?: string;
     }
   >;
 };
@@ -86,7 +92,8 @@ async function main() {
       affiliateURL: item.affiliateurl || item.url,
       price: item.price,
       review,
-      performer: item.performer?.map((p) => p.name),
+      performer: item.performer?.map((p) => p.name).filter(Boolean) as string[] | undefined,
+      sampleMovie: getSampleMovieUrl(item),
     };
   }
 

@@ -1,8 +1,14 @@
 import Link from "next/link";
 import type { DugaItem } from "@/lib/types";
-import { getReleaseDate, getReviewScore, getThumbnail } from "@/lib/duga";
+import {
+  getReleaseDate,
+  getReviewScore,
+  getSampleMovieUrl,
+  getThumbnail,
+} from "@/lib/duga";
 import { TAG_BY_SLUG } from "@/lib/tags";
 import { getTagsForWork } from "@/lib/work-tags-store";
+import { HoverPreviewVideo } from "./HoverPreviewVideo";
 
 type Props = {
   item?: DugaItem;
@@ -15,6 +21,7 @@ type Props = {
     review?: { average: string; count: number };
     performer?: string[];
     tags?: string[];
+    sampleMovie?: string;
   };
 };
 
@@ -28,7 +35,7 @@ export function WorkCard({ item, work }: Props) {
         title: item.title,
         date: getReleaseDate(item),
         thumbnail: getThumbnail(item),
-        price: item.price,
+        sampleMovie: getSampleMovieUrl(item),
         review: getReviewScore(item),
         performer: item.performer?.map((p) => p.name),
         tags: getTagsForWork(item.productid),
@@ -46,22 +53,18 @@ export function WorkCard({ item, work }: Props) {
       className="card-hover group block overflow-hidden rounded-xl border border-border bg-surface"
     >
       <div className="relative aspect-[3/4] w-full overflow-hidden bg-black/40">
-        {data.thumbnail && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={data.thumbnail}
-            alt={data.title}
-            loading="lazy"
-            className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
-          />
-        )}
+        <HoverPreviewVideo
+          thumbnail={data.thumbnail}
+          videoUrl={data.sampleMovie}
+          alt={data.title}
+        />
         {isNew && (
-          <span className="absolute left-2 top-2 rounded-md bg-danger px-1.5 py-0.5 text-[10px] font-bold tracking-wide text-white">
+          <span className="absolute left-2 top-2 z-10 rounded-md bg-danger px-1.5 py-0.5 text-[10px] font-bold tracking-wide text-white">
             NEW
           </span>
         )}
         {data.review && (
-          <span className="absolute right-2 top-2 flex items-center gap-0.5 rounded-md bg-black/70 px-1.5 py-0.5 text-[10px] font-medium backdrop-blur">
+          <span className="absolute right-2 top-2 z-10 flex items-center gap-0.5 rounded-md bg-black/70 px-1.5 py-0.5 text-[10px] font-medium backdrop-blur">
             <span className="text-accent">★</span>
             <span>{data.review.average}</span>
           </span>

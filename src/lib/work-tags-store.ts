@@ -10,6 +10,7 @@ export type TaggedWork = {
   price?: string;
   review?: { average: string; count: number };
   performer?: string[];
+  sampleMovie?: string;
 };
 
 type Store = {
