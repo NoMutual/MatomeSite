@@ -15,7 +15,7 @@ export default function DisclaimerPage() {
       <section className="space-y-3 text-sm leading-relaxed">
         <h2 className="text-lg font-bold">広告表記（PR）</h2>
         <p className="text-muted">
-          {siteName}（以下「当サイト」）は、FANZA（DMM.com）のアフィリエイトプログラムに参加しています。
+          {siteName}（以下「当サイト」）は、DUGA（APEXアフィリエイト）のアフィリエイトプログラムに参加しています。
           当サイト内で紹介している商品・サービスには広告リンク（アフィリエイトリンク）が含まれており、
           これらのリンクを経由して購入・会員登録が行われた場合、
           当サイトに報酬が支払われる仕組みとなっています。
@@ -30,14 +30,14 @@ export default function DisclaimerPage() {
         <h2 className="text-lg font-bold">掲載情報について</h2>
         <ul className="list-disc space-y-2 pl-5 text-muted">
           <li>
-            商品の価格・販売状況・サンプル画像・内容は FANZA 公式サイト（dmm.co.jp）から取得しており、
+            商品の価格・販売状況・サンプル画像・内容は DUGA 公式サイト（duga.jp）から取得しており、
             変更される場合があります。最新情報は必ず公式サイトでご確認ください。
           </li>
           <li>
             独自タグは運営者が作品情報から推定したもので、実際の内容と一致しない場合があります。
           </li>
           <li>
-            レビューの平均点・件数は FANZA 公式データを参照しています。
+            レビューの平均点・件数は DUGA 公式データを参照しています。
           </li>
         </ul>
       </section>
@@ -46,7 +46,7 @@ export default function DisclaimerPage() {
         <h2 className="text-lg font-bold">著作権について</h2>
         <p className="text-muted">
           商品画像・動画・説明文の著作権は各メーカー・販売元に帰属します。
-          当サイトは FANZA アフィリエイトプログラムの規約に基づき、
+          当サイトは APEX（DUGA）アフィリエイトプログラムの規約に基づき、
           公式が提供する素材を改変せず利用しています。
         </p>
       </section>

@@ -3,7 +3,7 @@ import { TAG_BY_SLUG } from "../tags";
 import { COMMENT_PATTERNS, GENRE_TO_TAGS, LABEL_HINT_TAGS } from "./rules";
 
 /**
- * DMM 作品情報から独自タグを推定する
+ * 作品情報から独自タグを推定する
  * @returns 重複除去済みのタグ slug 配列
  */
 export function tagItem(item: DmmItem): Tag["slug"][] {

@@ -91,7 +91,7 @@ export function Footer() {
 
         <div className="mt-10 space-y-1 border-t border-border pt-6 text-[11px] leading-relaxed text-muted">
           <p>
-            当サイトは FANZA のアフィリエイトプログラムに参加しています。
+            当サイトは DUGA（APEXアフィリエイト）のアフィリエイトプログラムに参加しています。
             掲載商品のリンクは広告です（PR）。
           </p>
           <p>18歳未満の閲覧は固くお断りします。</p>

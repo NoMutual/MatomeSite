@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     template: `%s | ${siteName}`,
   },
   description:
-    "FANZA の素人系作品を女の子のタイプ・シチュエーション・撮影スタイルで絞り込んで探せるデータベース。",
+    "DUGA の素人系作品を女の子のタイプ・シチュエーション・撮影スタイルで絞り込んで探せるデータベース。",
   robots: { index: true, follow: true },
   openGraph: {
     type: "website",

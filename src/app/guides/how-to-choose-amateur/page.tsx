@@ -29,7 +29,7 @@ export default function HowToChooseAmateurPage() {
           <span className="text-primary">タイトルから失敗しない3つの基準</span>
         </h1>
         <p className="text-sm leading-relaxed text-muted">
-          FANZAの素人系カテゴリは作品数が膨大で、しかもタイトルは「〇〇ちゃん」といった
+          DUGAの素人系カテゴリは作品数が膨大で、しかもタイトルは「〇〇ちゃん」といった
           個人名がほとんど。これでは何が収録されているのか想像できず、
           買ってから「思ってたのと違う」となることが多発します。
         </p>
@@ -99,7 +99,7 @@ export default function HowToChooseAmateurPage() {
       <section className="space-y-3">
         <h2 className="text-xl font-bold">商品説明の読み方のコツ</h2>
         <p className="text-sm leading-relaxed">
-          FANZAの素人系作品は商品説明文に意外と情報が詰まっています。以下のキーワードに注目：
+          DUGAの素人系作品は商品説明文に意外と情報が詰まっています。以下のキーワードに注目：
         </p>
         <ul className="list-disc space-y-1.5 pl-5 text-sm">
           <li>

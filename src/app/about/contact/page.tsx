@@ -29,7 +29,7 @@ export default function ContactPage() {
 
       <section className="space-y-3 text-xs text-muted">
         <p>
-          ※ 商品・配信内容に関するお問い合わせは、FANZA 公式サポートへお願いいたします。
+          ※ 商品・配信内容に関するお問い合わせは、DUGA 公式サポートへお願いいたします。
         </p>
         <p>※ 営業・広告掲載依頼等は現在お受けしておりません。</p>
       </section>

@@ -37,7 +37,7 @@ export default function PrivacyPage() {
       <section className="space-y-3 text-sm leading-relaxed">
         <h2 className="text-lg font-bold">3. アフィリエイトプログラム</h2>
         <p className="text-muted">
-          当サイトは FANZA（DMM.com）のアフィリエイトプログラムに参加しており、
+          当サイトは DUGA（APEXアフィリエイト）のアフィリエイトプログラムに参加しており、
           商品を紹介するためのリンクを掲載しています。
           これらのリンクを経由して購入が発生した場合、当サイトに報酬が支払われることがあります。
           ユーザーに追加の費用が発生することはありません。

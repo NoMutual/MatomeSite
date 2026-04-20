@@ -77,7 +77,7 @@ export default async function HomePage() {
               新着作品
             </h2>
             <p className="mt-1 text-xs text-muted">
-              FANZA 素人系カテゴリから最新 24 件
+              DUGA 素人系カテゴリから最新 24 件
             </p>
           </div>
           <Link
@@ -95,7 +95,7 @@ export default async function HomePage() {
             </p>
             <p className="mt-1 text-muted">{error}</p>
             <p className="mt-3 text-xs text-muted">
-              DMMアフィリエイトの審査完了後、{" "}
+              APEX（DUGA）アフィリエイト登録後、{" "}
               <code className="rounded bg-black/40 px-1.5 py-0.5 text-[11px]">
                 .env.local
               </code>{" "}

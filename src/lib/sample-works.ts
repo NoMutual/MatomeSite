@@ -9,7 +9,7 @@ const store = sampleData as unknown as SampleStore;
 
 /**
  * APIが使えない時のフォールバックデータ。
- * data/sample-works.json に手動でFANZA公開情報を投入する前提。
+ * data/sample-works.json に手動でDUGA公開情報を投入する前提。
  */
 export function getSampleItems(): DmmItem[] {
   return store.items ?? [];

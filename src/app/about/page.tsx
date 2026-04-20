@@ -13,7 +13,7 @@ export default function AboutPage() {
       <div>
         <h1 className="text-2xl font-bold md:text-3xl">サイトについて</h1>
         <p className="mt-3 text-sm leading-relaxed text-muted">
-          {siteName} は、FANZA（DMM）で配信されている素人系作品を、
+          {siteName} は、DUGA で配信されている素人系作品を、
           タイトルだけでは分からない「中身の特徴」で検索できるデータベースサイトです。
         </p>
       </div>

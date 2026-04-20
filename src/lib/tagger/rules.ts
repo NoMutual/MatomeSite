@@ -1,7 +1,7 @@
 import type { Tag } from "../types";
 
 /**
- * DMM公式ジャンル名 → 独自タグ slug のマッピング
+ * 公式ジャンル名 → 独自タグ slug のマッピング
  * ItemList API が返す iteminfo.genre[].name との完全一致で判定
  */
 export const GENRE_TO_TAGS: Record<string, Tag["slug"][]> = {

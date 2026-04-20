@@ -123,7 +123,7 @@ export default async function WorkDetailPage({ params }: Props) {
               rel="noopener sponsored"
               className="mt-4 flex h-12 w-full items-center justify-center gap-2 rounded-lg bg-primary text-sm font-bold text-white transition hover:bg-primary-2"
             >
-              FANZAで見る
+              DUGAで見る
               <span aria-hidden>→</span>
             </a>
             <p className="mt-2 text-center text-[10px] text-muted">
@@ -234,7 +234,7 @@ export default async function WorkDetailPage({ params }: Props) {
       {/* 再CTA */}
       <section className="rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 via-surface to-surface p-6 text-center md:p-8">
         <p className="text-sm text-muted">
-          中身が気になったら、FANZAで詳細・サンプル動画をチェック
+          中身が気になったら、DUGAで詳細・サンプル動画をチェック
         </p>
         <a
           href={item.affiliateURL || item.URL}
@@ -242,7 +242,7 @@ export default async function WorkDetailPage({ params }: Props) {
           rel="noopener sponsored"
           className="mt-4 inline-flex h-12 items-center gap-2 rounded-lg bg-primary px-8 text-sm font-bold text-white transition hover:bg-primary-2"
         >
-          FANZAで見る
+          DUGAで見る
           <span aria-hidden>→</span>
         </a>
         <p className="mt-2 text-[10px] text-muted">PR / 広告</p>
