@@ -1,10 +1,10 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "素人系ナビ - タイトルじゃ分からない素人系を、中身で探す";
+export const alt = "素人の極み - 素人をただ極めて行け。";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "素人系ナビ";
+const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "素人の極み";
 
 export default function OpengraphImage() {
   return new ImageResponse(
@@ -40,7 +40,7 @@ export default function OpengraphImage() {
             display: "flex",
             alignItems: "center",
             gap: 16,
-            fontSize: 28,
+            fontSize: 32,
             color: "#FF2B85",
             fontWeight: 700,
           }}
@@ -50,11 +50,11 @@ export default function OpengraphImage() {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              width: 56,
-              height: 56,
+              width: 64,
+              height: 64,
               background: "#FF2B85",
               color: "white",
-              fontSize: 32,
+              fontSize: 36,
               fontWeight: 900,
               borderRadius: 12,
             }}
@@ -65,19 +65,19 @@ export default function OpengraphImage() {
         </div>
         <div
           style={{
-            marginTop: 40,
-            fontSize: 72,
+            marginTop: 48,
+            fontSize: 96,
             fontWeight: 900,
-            lineHeight: 1.15,
-            letterSpacing: -2,
+            lineHeight: 1.1,
+            letterSpacing: -4,
             display: "flex",
             flexDirection: "column",
           }}
         >
-          <div style={{ display: "flex" }}>タイトルじゃ分からない</div>
+          <div style={{ display: "flex" }}>素人を、</div>
           <div style={{ display: "flex" }}>
-            <span style={{ color: "#FF2B85" }}>素人系</span>
-            <span>を、中身で探す。</span>
+            <span style={{ color: "#FF2B85" }}>ただ極めて行け</span>
+            <span>。</span>
           </div>
         </div>
         <div style={{ marginTop: 32, fontSize: 28, color: "#9A9AA5" }}>

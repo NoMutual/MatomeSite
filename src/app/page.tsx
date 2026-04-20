@@ -39,16 +39,15 @@ export default async function HomePage() {
             <span className="inline-block h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
             素人系特化・内容で探せるDB
           </div>
-          <h1 className="mt-4 text-3xl font-black leading-tight md:text-5xl">
-            タイトルじゃ分からない<span className="text-primary">素人系</span>を、
+          <h1 className="mt-4 text-4xl font-black leading-tight md:text-6xl">
+            素人を、
             <br className="hidden md:block" />
-            中身で探す。
+            <span className="text-primary">ただ極めて行け</span>。
           </h1>
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted md:text-base">
-            「〇〇ちゃん」のタイトルだけで中身が想像できない素人系作品。
-            <br />
-            女の子のタイプ・シチュエーション・撮影スタイルを掛け合わせて、
-            あなた好みの一本にたどり着けます。
+            タイトルじゃ分からない素人系を、
+            女の子のタイプ・シチュエーション・撮影スタイルで絞り込み。
+            あなただけの一本を掘り当てる。
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Link

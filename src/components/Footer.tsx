@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { TAG_CATEGORY_LABEL } from "@/lib/tags";
 
-const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "素人系ナビ";
+const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "素人の極み";
 
 export function Footer() {
   const categories = Object.entries(TAG_CATEGORY_LABEL);
@@ -17,8 +17,9 @@ export function Footer() {
               <span className="font-bold">{siteName}</span>
             </div>
             <p className="mt-3 text-xs leading-relaxed text-muted">
-              タイトルから中身が分かりにくい素人系作品を、
-              独自タグで絞り込んで探せるデータベース。
+              素人をただ極めて行け。
+              <br />
+              タイトルから中身が分かりにくい素人系作品を、独自タグで絞り込んで探せるデータベース。
             </p>
           </div>
 

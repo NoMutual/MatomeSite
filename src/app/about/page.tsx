@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "素人系ナビ";
+const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "素人の極み";
 
 export const metadata = {
   title: "サイトについて",
@@ -12,6 +12,9 @@ export default function AboutPage() {
     <article className="mx-auto max-w-2xl space-y-8">
       <div>
         <h1 className="text-2xl font-bold md:text-3xl">サイトについて</h1>
+        <p className="mt-3 text-lg font-bold text-primary">
+          素人をただ極めて行け。
+        </p>
         <p className="mt-3 text-sm leading-relaxed text-muted">
           {siteName} は、DUGA で配信されている素人系作品を、
           タイトルだけでは分からない「中身の特徴」で検索できるデータベースサイトです。

@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "素人系ナビ";
+const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "素人の極み";
 
 export function Header() {
   return (

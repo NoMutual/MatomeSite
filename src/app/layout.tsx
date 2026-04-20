@@ -4,17 +4,16 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { AgeGate } from "@/components/AgeGate";
 
-const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "素人系ナビ";
+const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "素人の極み";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${siteName} | タイトルじゃ分からない素人系を、中身で探す`,
+    default: `${siteName} | 素人をただ極めて行け。`,
     template: `%s | ${siteName}`,
   },
-  description:
-    "DUGA の素人系作品を女の子のタイプ・シチュエーション・撮影スタイルで絞り込んで探せるデータベース。",
+  description: "素人をただ極めて行け。",
   robots: { index: true, follow: true },
   openGraph: {
     type: "website",
