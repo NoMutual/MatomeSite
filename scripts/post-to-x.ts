@@ -53,6 +53,24 @@ function pickWork(
   return { productid: pid, item: v.item, tags: v.tags };
 }
 
+/** ヘッダー文言のバリエーション。毎回ランダム選択 */
+const TWEET_HEADERS = [
+  "🔥 今日の新着素人作品はコレだ",
+  "💯 見逃すな素人の極み最新作",
+  "今夜の素人、厳選",
+  "⚡ 本日の極みピック入荷しました",
+  "📹 ガチの素人作品、本日の一本",
+  "🌙 今夜の推し素人が決定した",
+  "🔍 素人を極めたい者だけ見ろ",
+  "💎 パッケ裏の素人、まさかの逸品",
+  "🎬 リアル素人劇場、本日の一作",
+  "素人至高の一杯",
+];
+
+function pickHeader(): string {
+  return TWEET_HEADERS[Math.floor(Math.random() * TWEET_HEADERS.length)];
+}
+
 function buildTweetText(item: DugaItem, tags: string[]): string {
   const affiliate = getAffiliateLink(item);
 
@@ -69,7 +87,7 @@ function buildTweetText(item: DugaItem, tags: string[]): string {
     item.title.length > 60 ? item.title.slice(0, 58) + "…" : item.title;
 
   const lines = [
-    "🔥 今日の素人ピック",
+    pickHeader(),
     "",
     title,
     "",
