@@ -35,11 +35,7 @@ export default async function HomePage() {
         />
 
         <div className="relative">
-          <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-[11px] font-medium text-primary">
-            <span className="inline-block h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-            素人系特化・内容で探せるDB
-          </div>
-          <h1 className="mt-4 text-4xl font-black leading-tight md:text-6xl">
+          <h1 className="text-4xl font-black leading-tight md:text-6xl">
             素人を、
             <br className="hidden md:block" />
             <span className="text-primary">ただ極めて行け</span>。
