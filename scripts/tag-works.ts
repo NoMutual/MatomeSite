@@ -3,33 +3,22 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import type { DugaItem, DugaSearchResponse } from "../src/lib/types.ts";
 import { tagItem } from "../src/lib/tagger/index.ts";
-import {
-  getReleaseDate,
-  getReviewScore,
-  getSampleMovieUrl,
-  getThumbnail,
-} from "../src/lib/duga.ts";
+import { getReleaseDate } from "../src/lib/duga.ts";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT_PATH = resolve(__dirname, "../data/work-tags.json");
 const API_BASE = "http://affapi.duga.jp/search";
 
+type StoreEntry = {
+  tags: string[];
+  date: string;
+  /** API の完全な DugaItem。Cloudflare Workers は HTTP fetch が不安定なので静的に埋め込む */
+  item: DugaItem;
+};
+
 type WorkTags = {
   generated_at: string;
-  items: Record<
-    string,
-    {
-      tags: string[];
-      title: string;
-      date: string;
-      thumbnail?: string;
-      affiliateURL?: string;
-      price?: string;
-      review?: { average: string; count: number };
-      performer?: string[];
-      sampleMovie?: string;
-    }
-  >;
+  items: Record<string, StoreEntry>;
 };
 
 async function fetchPage(offset: number, hits: number): Promise<DugaItem[]> {
@@ -57,13 +46,12 @@ async function fetchPage(offset: number, hits: number): Promise<DugaItem[]> {
   return (json.items ?? []).map((w) => w.item);
 }
 
-/** DUGA API は 60req/60sec 制限なので待機 */
 async function sleep(ms: number) {
   return new Promise((r) => setTimeout(r, ms));
 }
 
 async function main() {
-  const target = Number(process.env.TAG_TARGET_COUNT ?? 100);
+  const target = Number(process.env.TAG_TARGET_COUNT ?? 200);
   const perPage = 50;
   const all: DugaItem[] = [];
   for (let offset = 1; all.length < target; offset += perPage) {
@@ -72,7 +60,7 @@ async function main() {
     if (page.length === 0) break;
     all.push(...page);
     if (page.length < perPage) break;
-    await sleep(1200); // レート制限回避
+    await sleep(1200);
   }
   console.log(`fetched ${all.length} works`);
 
@@ -83,17 +71,10 @@ async function main() {
     const tags = tagItem(item);
     if (tags.length === 0) zeroCount++;
     for (const t of tags) tagCounts.set(t, (tagCounts.get(t) ?? 0) + 1);
-    const review = getReviewScore(item);
     out.items[item.productid] = {
       tags,
-      title: item.title,
       date: getReleaseDate(item),
-      thumbnail: getThumbnail(item),
-      affiliateURL: item.affiliateurl || item.url,
-      price: item.price,
-      review,
-      performer: item.performer?.map((p) => p.name).filter(Boolean) as string[] | undefined,
-      sampleMovie: getSampleMovieUrl(item),
+      item,
     };
   }
 
@@ -105,7 +86,6 @@ async function main() {
   console.log(`\n=== 結果 ===`);
   console.log(`総作品数: ${total}`);
   console.log(`タグが1個以上付いた: ${total - zeroCount} (${(avg * 100).toFixed(1)}%)`);
-  console.log(`タグゼロ: ${zeroCount}`);
   console.log(`\n人気タグ TOP20:`);
   [...tagCounts.entries()]
     .sort((a: [string, number], b: [string, number]) => b[1] - a[1])

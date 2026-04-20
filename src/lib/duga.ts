@@ -1,23 +1,10 @@
-import type { DugaItem, DugaSearchResponse } from "./types.ts";
-import { findSampleItem, getSampleItems } from "./sample-works.ts";
+import type { DugaItem } from "./types.ts";
 
-const API_BASE = "http://affapi.duga.jp/search";
-
-function hasCreds(): boolean {
-  return Boolean(process.env.DUGA_APPID && process.env.DUGA_AGENTID);
-}
-
-function getCreds() {
-  const appid = process.env.DUGA_APPID;
-  const agentid = process.env.DUGA_AGENTID;
-  const bannerid = process.env.DUGA_BANNERID ?? "01";
-  if (!appid || !agentid) {
-    throw new Error(
-      "DUGA_APPID / DUGA_AGENTID が未設定です。.env.local を確認してください。",
-    );
-  }
-  return { appid, agentid, bannerid };
-}
+/**
+ * Cloudflare Workers は HTTP (DUGA API は HTTP のみ) fetch が不安定なため、
+ * 実ランタイムでは API を直接叩かず data/work-tags.json の静的データを返す。
+ * データ更新は ローカルで `npm run tag` → commit → デプロイ の流れ。
+ */
 
 export type DugaQuery = {
   hits?: number;
@@ -25,9 +12,7 @@ export type DugaQuery = {
   sort?: "new" | "release" | "favorite" | "price" | "rating" | "mylist";
   keyword?: string;
   productid?: string;
-  /** 素人=01 / 熟女=07 / SM=08 / 女子高生=09 / コスプレ=10 等 */
   category?: string;
-  /** ppv / sd / rental / hd / hdrental */
   target?: "ppv" | "sd" | "rental" | "hd" | "hdrental";
 };
 
@@ -37,69 +22,53 @@ type ApiResult = {
   offset: number;
 };
 
-/** DUGA レスポンスを items: DugaItem[] に正規化 */
-function normalize(json: DugaSearchResponse): ApiResult {
-  const items = (json.items ?? []).map((wrap) => wrap.item);
+/**
+ * 素人カテゴリ作品を検索（ローカルデータから）
+ */
+export async function fetchAmateurItems(query: DugaQuery = {}): Promise<ApiResult> {
+  const { getAllItems } = await import("./work-tags-store.ts");
+  const all = getAllItems();
+
+  // キーワードフィルタ
+  let filtered = all;
+  if (query.keyword) {
+    const kw = query.keyword;
+    filtered = all.filter(
+      (i) => i.title.includes(kw) || (i.caption ?? "").includes(kw),
+    );
+  }
+
+  // ソート
+  if (query.sort === "rating") {
+    filtered.sort((a, b) => {
+      const ra = parseFloat(a.review?.[0]?.score ?? "0");
+      const rb = parseFloat(b.review?.[0]?.score ?? "0");
+      return rb - ra;
+    });
+  } else if (query.sort === "favorite") {
+    filtered.sort((a, b) => {
+      const ra = parseInt(a.ranking?.[0]?.total?.replace(/,/g, "") ?? "0");
+      const rb = parseInt(b.ranking?.[0]?.total?.replace(/,/g, "") ?? "0");
+      return rb - ra;
+    });
+  }
+  // default は生成時の新着順（getAllItems がすでに date desc）
+
+  const hits = query.hits ?? 30;
+  const offset = Math.max(0, (query.offset ?? 1) - 1);
   return {
-    items,
-    total: Number(json.count ?? 0),
-    offset: Number(json.offset ?? 1),
+    items: filtered.slice(offset, offset + hits),
+    total: filtered.length,
+    offset: offset + 1,
   };
 }
 
 /**
- * 素人カテゴリ (category=01) の作品を検索
- */
-export async function fetchAmateurItems(query: DugaQuery = {}): Promise<ApiResult> {
-  if (!hasCreds()) {
-    const samples = getSampleItems();
-    const hits = query.hits ?? 30;
-    const offset = Math.max(0, (query.offset ?? 1) - 1);
-    const filtered = query.keyword
-      ? samples.filter((s) => s.title.includes(query.keyword!))
-      : samples;
-    return {
-      items: filtered.slice(offset, offset + hits),
-      total: filtered.length,
-      offset: offset + 1,
-    };
-  }
-
-  const { appid, agentid, bannerid } = getCreds();
-  const params = new URLSearchParams({
-    version: "1.2",
-    appid,
-    agentid,
-    bannerid,
-    format: "json",
-    adult: "1",
-    category: query.category ?? "01",
-    hits: String(query.hits ?? 30),
-    offset: String(query.offset ?? 1),
-    sort: query.sort ?? "new",
-  });
-  if (query.keyword) params.set("keyword", query.keyword);
-  if (query.productid) params.set("productid", query.productid);
-  if (query.target) params.set("target", query.target);
-
-  const url = `${API_BASE}?${params.toString()}`;
-  const res = await fetch(url, { next: { revalidate: 60 * 60 * 3 } });
-  if (!res.ok) {
-    throw new Error(`DUGA API error: ${res.status} ${res.statusText}`);
-  }
-  const json = (await res.json()) as DugaSearchResponse;
-  return normalize(json);
-}
-
-/**
- * productid 単体で詳細取得
+ * productid で単体取得
  */
 export async function fetchItemById(productid: string): Promise<DugaItem | null> {
-  if (!hasCreds()) {
-    return findSampleItem(productid) ?? null;
-  }
-  const result = await fetchAmateurItems({ productid, hits: 1 });
-  return result.items[0] ?? null;
+  const { getFullItem } = await import("./work-tags-store.ts");
+  return getFullItem(productid) ?? null;
 }
 
 /* -------------------- 画像ヘルパー -------------------- */
@@ -109,7 +78,6 @@ function pickImage(
   prefer: "large" | "midium" | "small" = "large",
 ): string | undefined {
   if (!images) return undefined;
-  // 配列の各要素は1つしかキーを持たないので全要素をマージ
   const merged: { small?: string; midium?: string; large?: string } = {};
   for (const obj of images) {
     if (obj.small) merged.small = obj.small;

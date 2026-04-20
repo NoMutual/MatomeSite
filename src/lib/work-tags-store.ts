@@ -1,5 +1,27 @@
 import workTagsData from "../../data/work-tags.json" with { type: "json" };
+import type { DugaItem } from "./types.ts";
+import {
+  getAffiliateLink,
+  getReleaseDate,
+  getReviewScore,
+  getSampleMovieUrl,
+  getThumbnail,
+} from "./duga.ts";
 
+type StoreEntry = {
+  tags: string[];
+  date: string;
+  item: DugaItem;
+};
+
+type Store = {
+  generated_at: string | null;
+  items: Record<string, StoreEntry>;
+};
+
+const store = workTagsData as unknown as Store;
+
+/** 表示用に派生した軽量データ型（カード表示で使う） */
 export type TaggedWork = {
   productid: string;
   tags: string[];
@@ -13,12 +35,23 @@ export type TaggedWork = {
   sampleMovie?: string;
 };
 
-type Store = {
-  generated_at: string | null;
-  items: Record<string, Omit<TaggedWork, "productid">>;
-};
-
-const store = workTagsData as Store;
+function toTagged(productid: string, entry: StoreEntry): TaggedWork {
+  const it = entry.item;
+  return {
+    productid,
+    tags: entry.tags,
+    title: it.title,
+    date: entry.date || getReleaseDate(it),
+    thumbnail: getThumbnail(it),
+    affiliateURL: getAffiliateLink(it),
+    price: it.price,
+    review: getReviewScore(it),
+    performer: it.performer?.map((p) => p.name).filter(Boolean) as
+      | string[]
+      | undefined,
+    sampleMovie: getSampleMovieUrl(it),
+  };
+}
 
 export function getTagsForWork(productid: string): string[] {
   return store.items[productid]?.tags ?? [];
@@ -27,12 +60,25 @@ export function getTagsForWork(productid: string): string[] {
 export function getWorksByTag(slug: string): TaggedWork[] {
   return Object.entries(store.items)
     .filter(([, v]) => v.tags.includes(slug))
-    .map(([productid, v]) => ({ productid, ...v }))
+    .map(([pid, v]) => toTagged(pid, v))
     .sort((a, b) => b.date.localeCompare(a.date));
 }
 
 export function getAllTaggedWorks(): TaggedWork[] {
-  return Object.entries(store.items).map(([productid, v]) => ({ productid, ...v }));
+  return Object.entries(store.items).map(([pid, v]) => toTagged(pid, v));
+}
+
+/** フル DugaItem を productid で取得。Cloudflare 環境ではこれが唯一のデータソース */
+export function getFullItem(productid: string): DugaItem | undefined {
+  return store.items[productid]?.item;
+}
+
+/** 全ての DugaItem を新着順で返す（一覧表示用） */
+export function getAllItems(): DugaItem[] {
+  return Object.entries(store.items)
+    .map(([, v]) => v)
+    .sort((a, b) => b.date.localeCompare(a.date))
+    .map((v) => v.item);
 }
 
 export function getGeneratedAt(): string | null {
@@ -41,8 +87,8 @@ export function getGeneratedAt(): string | null {
 
 export function getTagCounts(): Map<string, number> {
   const counts = new Map<string, number>();
-  for (const item of Object.values(store.items)) {
-    for (const tag of item.tags) {
+  for (const entry of Object.values(store.items)) {
+    for (const tag of entry.tags) {
       counts.set(tag, (counts.get(tag) ?? 0) + 1);
     }
   }
@@ -59,12 +105,15 @@ export function getRelatedWorks(productid: string, limit = 6): TaggedWork[] {
 
   return Object.entries(store.items)
     .filter(([id]) => id !== productid)
-    .map(([id, v]) => {
-      const overlap = v.tags.filter((t) => sourceTags.has(t)).length;
-      return { productid: id, overlap, ...v };
-    })
-    .filter((w) => w.overlap > 0)
-    .sort((a, b) => b.overlap - a.overlap || b.date.localeCompare(a.date))
+    .map(([pid, v]) => ({
+      pid,
+      v,
+      overlap: v.tags.filter((t) => sourceTags.has(t)).length,
+    }))
+    .filter((r) => r.overlap > 0)
+    .sort(
+      (a, b) => b.overlap - a.overlap || b.v.date.localeCompare(a.v.date),
+    )
     .slice(0, limit)
-    .map(({ overlap: _overlap, ...w }) => w);
+    .map((r) => toTagged(r.pid, r.v));
 }
