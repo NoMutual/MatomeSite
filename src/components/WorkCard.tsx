@@ -52,7 +52,7 @@ export function WorkCard({ item, work }: Props) {
       href={`/works/${data.productid}`}
       className="card-hover group block overflow-hidden rounded-xl border border-border bg-surface"
     >
-      <div className="relative aspect-[3/4] w-full overflow-hidden bg-black/40">
+      <div className="relative aspect-video w-full overflow-hidden bg-black/40">
         <HoverPreviewVideo
           thumbnail={data.thumbnail}
           videoUrl={data.sampleMovie}
