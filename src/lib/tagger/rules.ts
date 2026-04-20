@@ -1,7 +1,7 @@
 import type { Tag } from "../types.ts";
 
 /**
- * DUGA カテゴリID → 独自タグ slug のマッピング
+ * DUGA カテゴリID → 極みタグ slug のマッピング
  * item.category[].data.id との完全一致で判定
  */
 export const DUGA_CATEGORY_TO_TAGS: Record<string, Tag["slug"][]> = {
@@ -10,8 +10,8 @@ export const DUGA_CATEGORY_TO_TAGS: Record<string, Tag["slug"][]> = {
   "03": ["gachi"], // 盗撮 → ガチ感
   "07": ["jukujo"], // 熟女
   "09": ["joshidai"], // 女子大生/女子高生
-  "10": [], // コスプレ（独自タグに無いので空）
-  "21": [], // オナニー（独自タグに無いので空）
+  "10": [], // コスプレ（極みタグに無いので空）
+  "21": [], // オナニー（極みタグに無いので空）
   "23": ["monitor"], // 企画 → モニター企画
   // 100番台の属性タグ
   "100005": [], // 近親相姦
@@ -27,7 +27,7 @@ export const DUGA_CATEGORY_TO_TAGS: Record<string, Tag["slug"][]> = {
 };
 
 /**
- * DUGA レーベル名 → 独自タグ slug のマッピング
+ * DUGA レーベル名 → 極みタグ slug のマッピング
  * 部分一致（レーベル名に含まれていればマッチ）
  */
 export const LABEL_HINT_TAGS: Array<{ pattern: RegExp; tags: Tag["slug"][] }> = [
@@ -42,7 +42,7 @@ export const LABEL_HINT_TAGS: Array<{ pattern: RegExp; tags: Tag["slug"][] }> = 
 ];
 
 /**
- * caption (商品説明) へのキーワード正規表現 → 独自タグ slug
+ * caption (商品説明) へのキーワード正規表現 → 極みタグ slug
  */
 export const COMMENT_PATTERNS: Array<{ pattern: RegExp; tags: Tag["slug"][] }> = [
   // 場所

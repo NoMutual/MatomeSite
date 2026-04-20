@@ -21,7 +21,7 @@ export function Footer() {
             <p className="mt-3 text-xs leading-relaxed text-muted">
               素人をただ極めて行け。
               <br />
-              タイトルから中身が分かりにくい素人系作品を、独自タグで絞り込んで探せるデータベース。
+              タイトルから中身が分かりにくい素人系作品を、極みタグで絞り込んで探せるデータベース。
             </p>
           </div>
 

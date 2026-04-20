@@ -139,12 +139,12 @@ export default async function WorkDetailPage({ params }: Props) {
           </p>
         </section>
 
-        {/* 独自タグ */}
+        {/* 極みタグ */}
         {customTags.length > 0 && (
           <section className="space-y-4 rounded-xl border border-primary/20 bg-primary/5 p-5">
             <div className="flex items-center justify-between">
               <div className="text-xs font-semibold tracking-wider text-primary uppercase">
-                独自タグ（中身の特徴）
+                極みタグ（中身の特徴）
               </div>
               <span className="text-[10px] text-muted">{customTags.length} 個</span>
             </div>

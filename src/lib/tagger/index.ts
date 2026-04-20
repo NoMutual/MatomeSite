@@ -3,13 +3,13 @@ import { TAG_BY_SLUG } from "../tags.ts";
 import { COMMENT_PATTERNS, DUGA_CATEGORY_TO_TAGS, LABEL_HINT_TAGS } from "./rules.ts";
 
 /**
- * 作品情報から独自タグを推定する
+ * 作品情報から極みタグを推定する
  * @returns 重複除去済みのタグ slug 配列
  */
 export function tagItem(item: DugaItem): Tag["slug"][] {
   const tags = new Set<Tag["slug"]>();
 
-  // 1. DUGA カテゴリID → 独自タグ
+  // 1. DUGA カテゴリID → 極みタグ
   for (const c of item.category ?? []) {
     const mapped = DUGA_CATEGORY_TO_TAGS[c.data.id];
     if (mapped) for (const t of mapped) tags.add(t);
