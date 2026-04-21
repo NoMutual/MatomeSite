@@ -109,12 +109,37 @@ export function DLsiteAdSidebar({ side = "right" }: { side?: "left" | "right" })
     );
   }
 
-  // 左サイド: 既存の静的バナー3種縦積み
+  // 左サイド: DLsite ブログパーツ (痴女キーワード)
   return (
     <aside className="hidden space-y-4 lg:block">
-      <DLsiteAd banner="maniax" />
-      <DLsiteAd banner="books" />
-      <DLsiteAd banner="pro" />
+      <div className="text-[10px] font-bold tracking-wider text-muted/60 uppercase">
+        PR
+      </div>
+      <div className="overflow-hidden rounded-xl border border-border bg-surface p-2">
+        <DLsiteBlogparts
+          containerId="dl-bp-left"
+          config={{
+            base: "https://www.dlsite.com/",
+            type: "keyword",
+            site: "maniax",
+            query: {
+              keyword: "痴女",
+              order: "review_d",
+              ana_flg: "all",
+              options: ["-GRO", "-MEN"],
+            },
+            title: "キーワード作品",
+            display: "vertical",
+            detail: "1",
+            column: "v",
+            image: "large",
+            count: "3",
+            wrapper: "1",
+            autorotate: true,
+            aid: "shiroutokiwami",
+          }}
+        />
+      </div>
     </aside>
   );
 }
