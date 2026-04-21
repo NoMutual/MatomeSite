@@ -27,8 +27,76 @@ export default async function HomePage() {
   const tagCounts = getTagCounts();
   const categories = Object.entries(TAG_CATEGORY_LABEL) as [TagCategory, string][];
 
+  const leftWidget = (
+    <div className="hidden space-y-4 lg:block">
+      <div className="inline-flex items-center rounded-md bg-muted/20 px-2.5 py-1 text-xs font-bold tracking-wider text-text">
+        PR / 広告
+      </div>
+      <div className="overflow-hidden rounded-xl border border-border bg-surface p-2">
+        <DLsiteBlogparts
+          containerId="dl-bp-top-left"
+          config={{
+            base: "https://www.dlsite.com/",
+            type: "keyword",
+            site: "maniax",
+            query: {
+              keyword: "痴女",
+              order: "review_d",
+              ana_flg: "all",
+              options: ["-GRO", "-MEN"],
+            },
+            title: "キーワード作品",
+            display: "vertical",
+            detail: "1",
+            column: "v",
+            image: "large",
+            count: "3",
+            wrapper: "1",
+            autorotate: true,
+            aid: "shiroutokiwami",
+          }}
+        />
+      </div>
+    </div>
+  );
+
+  const rightWidget = (
+    <div className="hidden space-y-4 lg:block">
+      <div className="inline-flex items-center rounded-md bg-muted/20 px-2.5 py-1 text-xs font-bold tracking-wider text-text">
+        PR / 広告
+      </div>
+      <div className="overflow-hidden rounded-xl border border-border bg-surface p-2">
+        <DLsiteBlogparts
+          containerId="dl-bp-top-right"
+          config={{
+            base: "https://www.dlsite.com/",
+            type: "keyword",
+            site: "maniax",
+            query: {
+              keyword: "爆乳",
+              order: "review_d",
+              ana_flg: "all",
+              options: ["-GRO", "-MEN"],
+            },
+            title: "キーワード作品",
+            display: "vertical",
+            detail: "1",
+            column: "v",
+            image: "large",
+            count: "3",
+            wrapper: "1",
+            autorotate: true,
+            aid: "shiroutokiwami",
+          }}
+        />
+      </div>
+    </div>
+  );
+
   return (
-    <div className="space-y-12 md:space-y-16">
+    <div className="grid gap-6 lg:grid-cols-[220px_1fr_220px] lg:gap-6">
+      <div className="lg:sticky lg:top-[4.5rem] lg:self-start">{leftWidget}</div>
+      <div className="min-w-0 space-y-12 md:space-y-16">
       {/* Hero */}
       <section className="relative overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-surface via-surface to-surface-2 p-6 md:p-10">
         <div
@@ -107,76 +175,6 @@ export default async function HomePage() {
         )}
       </section>
 
-      {/* DLsite おすすめ (ブログパーツ 2種) */}
-      <section>
-        <div className="mb-4 flex items-end justify-between">
-          <div>
-            <h2 className="text-xl font-bold md:text-2xl">提携ストアのおすすめ</h2>
-            <p className="mt-1 text-xs text-muted">
-              DLsite 同人・エロゲー・音声作品（PR）
-            </p>
-          </div>
-        </div>
-        <div className="grid gap-6 md:grid-cols-2">
-          <div className="overflow-hidden rounded-xl border border-border bg-surface p-3">
-            <div className="mb-2 text-[10px] font-bold tracking-wider text-muted/60 uppercase">
-              PR / 痴女特集
-            </div>
-            <DLsiteBlogparts
-              containerId="dl-bp-top-chijo"
-              config={{
-                base: "https://www.dlsite.com/",
-                type: "keyword",
-                site: "maniax",
-                query: {
-                  keyword: "痴女",
-                  order: "review_d",
-                  ana_flg: "all",
-                  options: ["-GRO", "-MEN"],
-                },
-                title: "キーワード作品",
-                display: "vertical",
-                detail: "1",
-                column: "v",
-                image: "large",
-                count: "3",
-                wrapper: "1",
-                autorotate: true,
-                aid: "shiroutokiwami",
-              }}
-            />
-          </div>
-          <div className="overflow-hidden rounded-xl border border-border bg-surface p-3">
-            <div className="mb-2 text-[10px] font-bold tracking-wider text-muted/60 uppercase">
-              PR / 爆乳特集
-            </div>
-            <DLsiteBlogparts
-              containerId="dl-bp-top-bakunyu"
-              config={{
-                base: "https://www.dlsite.com/",
-                type: "keyword",
-                site: "maniax",
-                query: {
-                  keyword: "爆乳",
-                  order: "review_d",
-                  ana_flg: "all",
-                  options: ["-GRO", "-MEN"],
-                },
-                title: "キーワード作品",
-                display: "vertical",
-                detail: "1",
-                column: "v",
-                image: "large",
-                count: "3",
-                wrapper: "1",
-                autorotate: true,
-                aid: "shiroutokiwami",
-              }}
-            />
-          </div>
-        </div>
-      </section>
-
       {/* タグで探す */}
       <section>
         <div className="mb-6">
@@ -223,6 +221,8 @@ export default async function HomePage() {
           })}
         </div>
       </section>
+      </div>
+      <div className="lg:sticky lg:top-[4.5rem] lg:self-start">{rightWidget}</div>
     </div>
   );
 }

@@ -77,8 +77,8 @@ export function DLsiteAdSidebar({ side = "right" }: { side?: "left" | "right" })
   if (side === "right") {
     return (
       <aside className="hidden space-y-4 lg:block">
-        <div className="text-[10px] font-bold tracking-wider text-muted/60 uppercase">
-          PR
+        <div className="inline-flex items-center rounded-md bg-muted/20 px-2.5 py-1 text-xs font-bold tracking-wider text-text">
+          PR / 広告
         </div>
         <div className="overflow-hidden rounded-xl border border-border bg-surface p-2">
           <DLsiteBlogparts
