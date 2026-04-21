@@ -1,20 +1,42 @@
-# Fanza 素人系ナビ（仮）
+# 素人の極み
 
-FANZA の素人系作品を独自の属性タグで絞り込んで探せるデータベース型アフィリエイトサイト。
+> 素人をただ極めて行け。
 
-## コンセプト
+タイトルじゃ分からない素人系作品を、極みタグ（女の子のタイプ・シチュエーション・撮影スタイル・場所）で絞り込んで探せるデータベース型アフィサイト。
+
+## 🌐 本番URL
+
+**https://shirouto-kiwami.com**
+
+旧URL（互換保持）: https://matomesite.ima0hiro.workers.dev
+
+## 🎯 コンセプト
 
 素人系AVはタイトルが「〜ちゃん」等で**中身が分からない**。MissAV等の海賊版にも素人系は無い。
-→ 検索で「清楚系 × ナンパ × 初撮り」のように絞り込めて、**中身が分かって、買える** サイトを作る。
+→ 検索で「清楚系 × マッチングアプリ × 初撮り」のように絞り込めて、**中身が分かって、買える**サイトを作る。
 
-## 技術スタック
+## 🏗️ 技術スタック
 
-- Next.js 15 (App Router) + TypeScript
-- Tailwind CSS
-- Cloudflare Pages（本番）/ `@cloudflare/next-on-pages`
-- DMM Web Service API v3
+- **Next.js 16** (App Router) + TypeScript + Tailwind CSS v4
+- **Cloudflare Workers**（本番ホスティング、`@opennextjs/cloudflare` 経由）
+- **DUGA Web Service API** (APEX アフィリエイト)
+- **DLsite アフィリエイト**（サイドバー広告）
+- **X API v2**（自動投稿 bot `@NoMutual_MATOME`）
+- **GitHub Actions**（データ更新 3h毎 / X投稿 3h毎）
 
-## セットアップ
+## 📂 データ管理
+
+DBなし。`data/work-tags.json` 1ファイルに全作品データを保存（最大 1500 件、上限到達後は発売日が古い順に削除）。
+
+## 🔄 自動化
+
+| 内容 | スケジュール | ワークフロー |
+|---|---|---|
+| DUGA API から新着取得+タグ付け | 3時間ごと | `.github/workflows/update-tags.yml` |
+| X へ動画付き自動投稿 | 3時間ごと | `.github/workflows/post-x.yml` |
+| Cloudflare 再デプロイ | Git push 時 自動 | Cloudflare 側の連携 |
+
+## 🚀 ローカル開発
 
 ```bash
 # 依存インストール
@@ -22,69 +44,83 @@ npm install
 
 # 環境変数設定
 cp .env.local.example .env.local
-# DMM_API_ID / DMM_AFFILIATE_ID を記入
+# DUGA_APPID / DUGA_AGENTID / DUGA_BANNERID を記入
 
 # 開発サーバー
 npm run dev
 # → http://localhost:3000
+
+# 型チェック
+npx tsc --noEmit
+
+# バッチ: DUGA から作品取得+タグ付け
+npm run tag
+
+# バッチ: X に1件投稿
+npm run post:x
 ```
 
-DMM API 認証情報が未設定でも UI は表示されます（API 呼び出し部分のみエラー表示）。
-
-## ディレクトリ構成
+## 📁 主なディレクトリ
 
 ```
 src/
 ├── app/
-│   ├── layout.tsx            # 全体レイアウト + 年齢確認
-│   ├── page.tsx              # トップ（新着・タグ入口）
-│   ├── works/
-│   │   ├── page.tsx          # 作品一覧・キーワード検索
-│   │   └── [cid]/page.tsx    # 作品詳細
-│   └── tags/
-│       ├── page.tsx          # タグ一覧
-│       └── [category]/[slug]/page.tsx  # タグ別作品
+│   ├── page.tsx                     # トップ (ランダムピック 6h rotate)
+│   ├── works/                       # 作品一覧・詳細
+│   ├── tags/[category]/[slug]/     # 個別タグページ
+│   ├── combo/[slugs]/              # タグ掛け合わせページ (例: /combo/gyaru-nampa)
+│   ├── search/[keyword]/           # キーワード検索 (例: /search/ナンパ)
+│   ├── guides/                     # ガイド記事
+│   └── about/                      # 法務ページ (privacy/disclaimer/contact)
 ├── components/
-│   ├── AgeGate.tsx           # 18禁確認モーダル
-│   ├── Header.tsx
-│   └── WorkCard.tsx
+│   ├── WorkCard.tsx                # 作品カード + ホバー動画プレビュー
+│   ├── SampleMoviePlayer.tsx       # 作品詳細の大きい動画プレイヤー
+│   ├── FacetSearch.tsx             # /works のタグファセット検索
+│   ├── DLsiteAd.tsx                # サイドバー広告 (DLsite実バナー)
+│   └── ...
 └── lib/
-    ├── types.ts              # DMM API 型定義
-    ├── dmm.ts                # DMM API クライアント（floor=videoc固定）
-    └── tags.ts               # 独自タグ定義（4軸）
+    ├── duga.ts                     # DUGA データアクセサ (ローカルJSON読み)
+    ├── work-tags-store.ts          # タグ検索・組み合わせ
+    ├── tags.ts                     # 極みタグ定義 (62タグ)
+    └── tagger/                     # ルールベースタグ付けエンジン
+
+data/
+├── work-tags.json                  # 作品データ (500〜1500件)
+└── x-posted.json                   # X投稿済 productid 管理
+
+scripts/
+├── tag-works.ts                    # DUGA取得+タグ付けバッチ
+└── post-to-x.ts                    # X 自動投稿スクリプト
 ```
 
-## 独自タグ体系（4軸）
+## 🏷️ 極みタグ体系（62タグ / 4軸）
 
-| 軸 | 中身 |
-|---|---|
-| `girl_type` | 女の子のタイプ（ルックス/体型/雰囲気/属性） |
-| `situation` | 出会い方・関係性（ナンパ/マッチング/初撮り等） |
-| `shooting_style` | 撮影スタイル（POV/固定/ガチ感/ドキュメント調等） |
-| `place_mood` | 場所・ムード（ホテル/自宅/野外/明るい等） |
+| 軸 | 内容 | タグ例 |
+|---|---|---|
+| `girl_type` | 女の子のタイプ | 清楚系、ギャル、巨乳、スレンダー、人妻、女子大生 |
+| `situation` | 出会い方・関係性 | ナンパ、マッチングアプリ、初撮り、AVデビュー、副業 |
+| `shooting_style` | 撮影スタイル | ハメ撮りPOV、固定カメラ、ドキュメント調、ガチ感 |
+| `place_mood` | 場所・ムード | ホテル、自宅、ラブホ、野外、明るい、暗め |
 
-DMM 公式ジャンルと**重複しない**、タイトルから読み取れない情報を補完する設計。
+## 💰 収益経路
 
-## Cloudflare Pages デプロイ
+- **DUGA**（メイン）: 作品詳細「DUGAで見る」ボタン + X投稿リンク (agentid: 48917)
+- **DLsite**（サブ）: `/works` 右サイドバーの広告バナー (affid: shiroutokiwami)
+
+## 📜 規約遵守
+
+- [APEX代理店規約](https://duga.jp/aff/rule.html) に準拠（動画は加工なしで転送、アフィリンク必須同梱、140秒超回避）
+- 景表法ステマ規制対応（PR表記明示、12px bold）
+- X Automation Rules 対応（bio に自動投稿bot 明記、NSFW フラグ）
+- セキュリティヘッダ全面設定（CSP / HSTS / X-Frame-Options 他）
+
+## ⚙️ Cloudflare デプロイ
 
 ```bash
-npm run pages:build
-npm run pages:deploy
+npm run preview   # ローカルでopennext経由プレビュー
+npm run deploy    # Cloudflareにデプロイ
 ```
 
-環境変数は Cloudflare Pages ダッシュボードで設定。
-
-## 現状の制約・次の作業
-
-- [ ] DMM API 審査通過後に `.env.local` に認証情報を投入して動作確認
-- [ ] 独自タグの**付与機構**未実装（次段階: LLM で自動タグ付け or 手動UI）
-- [ ] ファセット検索の UI は未実装（タグページは雛形のみ）
-- [ ] 作品詳細の「中身サマリ（独自生成文）」未実装
-- [ ] sitemap.xml / robots.txt 未設定
-
-## 規約遵守メモ
-
-- DMM 公式素材（画像・動画）は改変しない
-- バズリプ広告禁止、指名KWリスティング禁止
-- 「PR」「広告」明示（ステマ規制対応）
-- 18歳未満閲覧禁止（年齢確認モーダル実装済）
+環境変数は Cloudflare Workers の Variables and Secrets で設定：
+- `DUGA_APPID` / `DUGA_AGENTID` / `DUGA_BANNERID`
+- `NEXT_PUBLIC_SITE_URL=https://shirouto-kiwami.com`
