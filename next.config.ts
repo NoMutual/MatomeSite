@@ -25,7 +25,7 @@ const securityHeaders = [
     value: [
       "default-src 'self'",
       // 画像は DUGA の CDN を許可
-      "img-src 'self' data: blob: https://pic.duga.jp https://pics.dmm.co.jp",
+      "img-src 'self' data: blob: https://pic.duga.jp https://pics.dmm.co.jp https://www.dlsite.com",
       // サンプル動画は DUGA CDN のみ
       "media-src 'self' blob: https://affsample.duga.jp",
       // Next.js はインラインスクリプト・スタイルを使うので unsafe-inline 必要

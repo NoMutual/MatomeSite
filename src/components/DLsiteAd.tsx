@@ -1,77 +1,63 @@
 /**
- * DLsite アフィリエイト広告枠（ビジュアル特化・文字なし）。
- * 登録後は imageSrc / videoSrc に DLsite 提供のバナーを入れる。
+ * DLsite アフィリエイト広告枠。
+ * DLsite アフィリエイトページで発行した 300x250 バナー HTML を
+ * そのまま使用（画像/リンクの加工なし、規約準拠）。
  */
 
-const DLSITE_AFFID = process.env.NEXT_PUBLIC_DLSITE_AFFID ?? "";
+type BannerKey = "maniax" | "books" | "pro";
 
-type AdVariant = "square" | "tall" | "banner";
+const BANNERS: Record<
+  BannerKey,
+  { href: string; img: string; alt: string; width: number; height: number }
+> = {
+  // 男性向け 同人作品 Maniax → トップページ
+  maniax: {
+    href: "https://dlaf.jp/maniax/dlaf/=/aid/shiroutokiwami/url/https%3A%2F%2Fwww.dlsite.com%2Fmaniax%2F%3Futm_medium%3Daffiliate%26utm_campaign%3Dbnlink%26utm_content%3Dbn_sp_300_250_dojin_01.jpg",
+    img: "https://www.dlsite.com/img/male/dojin/bn_sp_300_250_dojin_01.jpg",
+    alt: "同人誌、同人ゲーム、同人ソフトのダウンロードショップ - DLsite",
+    width: 300,
+    height: 250,
+  },
+  // 男性向け 成年コミック Books → 週間ランキング
+  books: {
+    href: "https://dlaf.jp/books/dlaf/=/aid/shiroutokiwami/url/https%3A%2F%2Fwww.dlsite.com%2Fbooks%2Franking%2Fweek%2F%3Futm_medium%3Daffiliate%26utm_campaign%3Dbnlink%26utm_content%3Dbn_sp_300_250_dojin_01.jpg",
+    img: "https://www.dlsite.com/img/male/dojin/bn_sp_300_250_dojin_01.jpg",
+    alt: "成年コミック、エロ漫画、エロ小説 のダウンロードショップ - DLsite Books",
+    width: 300,
+    height: 250,
+  },
+  // 男性向け 商業作品 Pro → トップページ（エロゲ）
+  pro: {
+    href: "https://dlaf.jp/pro/dlaf/=/aid/shiroutokiwami/url/https%3A%2F%2Fwww.dlsite.com%2Fpro%2F%3Futm_medium%3Daffiliate%26utm_campaign%3Dbnlink%26utm_content%3Dbn_sp_300_250_dojin_01.jpg",
+    img: "https://www.dlsite.com/img/female/dojin/bn_sp_300_250_dojin_01.jpg",
+    alt: "エロゲ、エロアニメ、PCゲームのダウンロードショップ - DLsite Pro",
+    width: 300,
+    height: 250,
+  },
+};
 
 type Props = {
-  /** アスペクト比 */
-  variant?: AdVariant;
-  /** リンク先カテゴリ */
-  category?: "maniax" | "girlside" | "general";
-  /** 広告画像 URL（登録後に DLsite 提供のバナーURLを入れる） */
-  imageSrc?: string;
-  /** 広告動画 URL（アニメーションバナー、GIF/WebM/MP4） */
-  videoSrc?: string;
-  /** プレースホルダーのトーン */
-  tone?: "pink" | "purple" | "warm";
+  banner?: BannerKey;
 };
 
-const CATEGORY_URLS: Record<string, string> = {
-  maniax: "https://www.dlsite.com/maniax/",
-  girlside: "https://www.dlsite.com/girls/",
-  general: "https://www.dlsite.com/home/",
-};
-
-function buildUrl(category: Props["category"] = "maniax") {
-  const base = CATEGORY_URLS[category];
-  if (!DLSITE_AFFID) return base;
-  return `${base}?utm_medium=affiliate&utm_source=${encodeURIComponent(DLSITE_AFFID)}`;
-}
-
-export function DLsiteAd({
-  variant = "tall",
-  category = "maniax",
-  imageSrc,
-  videoSrc,
-  tone = "pink",
-}: Props) {
-  const url = buildUrl(category);
-
-  const variantClasses = {
-    square: "aspect-square",
-    tall: "aspect-[3/4]",
-    banner: "aspect-[3/1]",
-  }[variant];
-
+export function DLsiteAd({ banner = "maniax" }: Props) {
+  const b = BANNERS[banner];
   return (
     <a
-      href={url}
+      href={b.href}
       target="_blank"
       rel="noopener sponsored"
-      className={`group relative block w-full overflow-hidden rounded-xl border border-border bg-black transition hover:border-primary/60 ${variantClasses}`}
+      className="group relative block w-full overflow-hidden rounded-xl border border-border bg-black transition hover:border-primary/60"
       aria-label="広告 (PR)"
     >
-      {videoSrc ? (
-        <video
-          src={videoSrc}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          className="h-full w-full object-cover"
-        />
-      ) : imageSrc ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img src={imageSrc} alt="" className="h-full w-full object-cover" />
-      ) : (
-        <PlaceholderVisual tone={tone} />
-      )}
-
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={b.img}
+        alt={b.alt}
+        width={b.width}
+        height={b.height}
+        className="block h-auto w-full transition group-hover:scale-[1.02]"
+      />
       {/* 右上の PR マーク（景表法ステマ規制・明瞭表示に準拠） */}
       <span className="pointer-events-none absolute right-1.5 top-1.5 rounded-md bg-black/80 px-1.5 py-0.5 text-xs font-bold leading-none text-white backdrop-blur">
         PR
@@ -81,66 +67,14 @@ export function DLsiteAd({
 }
 
 /**
- * 画像・動画がまだ無い時のCSSプレースホルダー（揺れる演出）
- */
-function PlaceholderVisual({ tone }: { tone: NonNullable<Props["tone"]> }) {
-  const grad = {
-    pink: "from-[#ff2b85] via-[#b11e66] to-[#1f1f28]",
-    purple: "from-[#8a2be2] via-[#5a1a9b] to-[#16161d]",
-    warm: "from-[#ff6a88] via-[#ff99ac] to-[#0b0b0f]",
-  }[tone];
-
-  return (
-    <div className={`relative h-full w-full bg-gradient-to-br ${grad}`}>
-      {/* 揺れる大きな球体（おっぱい感のあるアニメーション） */}
-      <div
-        className="absolute left-[25%] top-[35%] h-[45%] w-[45%] rounded-full bg-white/40 blur-xl"
-        style={{ animation: "bounce-blob 1.8s ease-in-out infinite" }}
-      />
-      <div
-        className="absolute left-[45%] top-[40%] h-[42%] w-[42%] rounded-full bg-white/30 blur-xl"
-        style={{
-          animation: "bounce-blob 1.8s ease-in-out infinite",
-          animationDelay: "0.2s",
-        }}
-      />
-      {/* ハイライト */}
-      <div
-        className="absolute left-[35%] top-[40%] h-[15%] w-[15%] rounded-full bg-white/80 blur-md"
-        style={{ animation: "bounce-blob 1.8s ease-in-out infinite" }}
-      />
-      <div
-        className="absolute left-[55%] top-[45%] h-[13%] w-[13%] rounded-full bg-white/70 blur-md"
-        style={{
-          animation: "bounce-blob 1.8s ease-in-out infinite",
-          animationDelay: "0.2s",
-        }}
-      />
-      {/* 光のオーバーレイ */}
-      <div
-        aria-hidden
-        className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"
-      />
-      <style>{`
-        @keyframes bounce-blob {
-          0%, 100% { transform: translateY(0) scale(1); }
-          50% { transform: translateY(-6%) scale(1.04); }
-        }
-      `}</style>
-    </div>
-  );
-}
-
-/**
- * サイドバー用: 2〜3個の広告を縦積みにするコンテナ
+ * サイドバー用: 3 種類のバナーを縦積み
  */
 export function DLsiteAdSidebar({ side = "right" }: { side?: "left" | "right" }) {
   return (
     <aside className="hidden space-y-4 lg:block">
-      <DLsiteAd variant="tall" category="maniax" tone="pink" />
-      <DLsiteAd variant="tall" category="general" tone="purple" />
-      <DLsiteAd variant="banner" category="girlside" tone="warm" />
-      {/* suppress unused param */}
+      <DLsiteAd banner="maniax" />
+      <DLsiteAd banner="books" />
+      <DLsiteAd banner="pro" />
       <span className="hidden">{side}</span>
     </aside>
   );
