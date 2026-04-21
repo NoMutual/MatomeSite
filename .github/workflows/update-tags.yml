@@ -35,7 +35,8 @@ jobs:
           DUGA_APPID: ${{ secrets.DUGA_APPID }}
           DUGA_AGENTID: ${{ secrets.DUGA_AGENTID }}
           DUGA_BANNERID: ${{ secrets.DUGA_BANNERID }}
-          TAG_TARGET_COUNT: "200"
+          TAG_TARGET_COUNT: "500"
+          MAX_STORED_COUNT: "1500"
 
       - name: Check for changes
         id: diff
