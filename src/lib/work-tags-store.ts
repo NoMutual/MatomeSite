@@ -95,6 +95,33 @@ export function getTagCounts(): Map<string, number> {
   return counts;
 }
 
+/**
+ * 実データ上で同時に付与されているタグペアを頻度順で返す
+ * (sitemap の組み合わせページ生成に使う)
+ */
+export function getTagPairCounts(): Array<{
+  a: string;
+  b: string;
+  count: number;
+}> {
+  const pairs = new Map<string, number>();
+  for (const entry of Object.values(store.items)) {
+    const sorted = [...entry.tags].sort();
+    for (let i = 0; i < sorted.length; i++) {
+      for (let j = i + 1; j < sorted.length; j++) {
+        const key = `${sorted[i]}|${sorted[j]}`;
+        pairs.set(key, (pairs.get(key) ?? 0) + 1);
+      }
+    }
+  }
+  return [...pairs.entries()]
+    .map(([key, count]) => {
+      const [a, b] = key.split("|");
+      return { a, b, count };
+    })
+    .sort((x, y) => y.count - x.count);
+}
+
 export type SearchOptions = {
   tags?: string[];
   keyword?: string;

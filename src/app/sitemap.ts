@@ -1,6 +1,10 @@
 import type { MetadataRoute } from "next";
 import { TAGS, TAG_CATEGORY_LABEL } from "@/lib/tags";
-import { getAllTaggedWorks, getTagCounts } from "@/lib/work-tags-store";
+import {
+  getAllTaggedWorks,
+  getTagCounts,
+  getTagPairCounts,
+} from "@/lib/work-tags-store";
 import type { TagCategory } from "@/lib/types";
 
 const SITE_URL =
@@ -21,21 +25,10 @@ const SEARCH_KEYWORDS = [
   "スレンダー",
 ];
 
-/** 掛け合わせで SEO 狙う主要タグペア */
-const COMBO_PAIRS: string[][] = [
-  ["seiso", "nampa"],
-  ["gyaru", "nampa"],
-  ["joshidai", "hatsudori"],
-  ["hitozuma", "nampa"],
-  ["matching", "hatsudori"],
-  ["bijin", "pov"],
-  ["jukujo", "hotel"],
-  ["kyonyu", "matching"],
-  ["slender", "joshidai"],
-  ["gyaru", "matching"],
-  ["seiso", "hatsudori"],
-  ["hitozuma", "hotel"],
-];
+/** 実データ上で組み合わせが存在するタグペアのうち、最低この件数以上あるものだけ sitemap に含める */
+const MIN_PAIR_COUNT = 2;
+/** sitemap に含めるタグペアの上限 (多すぎる sitemap を防ぐ) */
+const MAX_PAIR_COUNT = 100;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -82,12 +75,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  const comboPages: MetadataRoute.Sitemap = COMBO_PAIRS.map((pair) => ({
-    url: `${SITE_URL}/combo/${pair.join("-")}`,
-    lastModified: now,
-    changeFrequency: "weekly",
-    priority: 0.7,
-  }));
+  const comboPages: MetadataRoute.Sitemap = getTagPairCounts()
+    .filter((p) => p.count >= MIN_PAIR_COUNT)
+    .slice(0, MAX_PAIR_COUNT)
+    .map(({ a, b, count }) => ({
+      url: `${SITE_URL}/combo/${a}-${b}`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: count >= 5 ? 0.75 : 0.65,
+    }));
 
   return [
     ...staticPages,
