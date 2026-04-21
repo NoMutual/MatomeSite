@@ -45,11 +45,6 @@ export function SampleMoviePlayer({ thumbnail, videoUrl, title }: Props) {
               </span>
             </button>
           )}
-          {videoUrl && (
-            <span className="pointer-events-none absolute bottom-3 right-3 rounded-md bg-black/70 px-2 py-1 text-[10px] text-white/90 backdrop-blur">
-              サンプル動画あり
-            </span>
-          )}
         </>
       )}
     </div>
