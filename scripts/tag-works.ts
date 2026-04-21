@@ -12,9 +12,37 @@ const API_BASE = "http://affapi.duga.jp/search";
 type StoreEntry = {
   tags: string[];
   date: string;
-  /** API の完全な DugaItem。Cloudflare Workers は HTTP fetch が不安定なので静的に埋め込む */
+  /**
+   * API の DugaItem（ただし Worker サイズ超過防止のため
+   * スリム化済み：thumbnail配列・posterimage・ranking 等は削る）
+   */
   item: DugaItem;
 };
+
+/**
+ * Worker バンドルサイズを抑えるため、不要な大容量フィールドを削って保存する。
+ * 詳細ページでサンプル画像を出したい場合は、別途 /public/data で持つか
+ * ランタイムで DUGA API に問い合わせる。
+ */
+function stripItem(item: DugaItem): DugaItem {
+  return {
+    productid: item.productid,
+    title: item.title,
+    caption: item.caption?.slice(0, 400),
+    makername: item.makername,
+    url: item.url,
+    affiliateurl: item.affiliateurl,
+    opendate: item.opendate,
+    releasedate: item.releasedate,
+    price: item.price,
+    jacketimage: item.jacketimage,
+    samplemovie: item.samplemovie,
+    label: item.label,
+    category: item.category,
+    performer: item.performer,
+    review: item.review,
+  };
+}
 
 type WorkTags = {
   generated_at: string;
@@ -106,7 +134,7 @@ async function main() {
     out.items[item.productid] = {
       tags,
       date: getReleaseDate(item),
-      item,
+      item: stripItem(item),
     };
   }
 

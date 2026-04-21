@@ -19,8 +19,7 @@
   "dependencies": {
     "next": "^16.2.4",
     "react": "^19.2.5",
-    "react-dom": "^19.2.5",
-    "twitter-api-v2": "^1.29.0"
+    "react-dom": "^19.2.5"
   },
   "devDependencies": {
     "@opennextjs/cloudflare": "^1.19.1",
@@ -31,6 +30,7 @@
     "eslint": "^9",
     "eslint-config-next": "^16.2.4",
     "tailwindcss": "^4.2.2",
+    "twitter-api-v2": "^1.29.0",
     "typescript": "^5.7.2",
     "wrangler": "^4.83.0"
   }
