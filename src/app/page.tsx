@@ -28,7 +28,7 @@ export default async function HomePage() {
   const categories = Object.entries(TAG_CATEGORY_LABEL) as [TagCategory, string][];
 
   const leftWidget = (
-    <div className="hidden space-y-4 lg:block">
+    <div className="hidden space-y-4 2xl:block">
       <div className="inline-flex items-center rounded-md bg-muted/20 px-2.5 py-1 text-xs font-bold tracking-wider text-text">
         PR / 広告
       </div>
@@ -61,7 +61,7 @@ export default async function HomePage() {
   );
 
   const rightWidget = (
-    <div className="hidden space-y-4 lg:block">
+    <div className="hidden space-y-4 2xl:block">
       <div className="inline-flex items-center rounded-md bg-muted/20 px-2.5 py-1 text-xs font-bold tracking-wider text-text">
         PR / 広告
       </div>
@@ -94,8 +94,9 @@ export default async function HomePage() {
   );
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[220px_1fr_220px] lg:gap-6">
-      <div className="lg:sticky lg:top-[4.5rem] lg:self-start">{leftWidget}</div>
+    // 2xl (≥1536px) 以上では左右外側の余白領域に広告を出す (-mx で max-w-1280px を突破)
+    <div className="space-y-12 md:space-y-16 2xl:-mx-[240px] 2xl:grid 2xl:grid-cols-[220px_1fr_220px] 2xl:gap-6 2xl:space-y-0">
+      <div className="2xl:sticky 2xl:top-[4.5rem] 2xl:self-start">{leftWidget}</div>
       <div className="min-w-0 space-y-12 md:space-y-16">
       {/* Hero */}
       <section className="relative overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-surface via-surface to-surface-2 p-6 md:p-10">
@@ -175,8 +176,8 @@ export default async function HomePage() {
         )}
       </section>
 
-      {/* モバイル専用: DLsite ブログパーツ 2枠 (デスクトップはサイドバーに表示) */}
-      <section className="space-y-4 lg:hidden">
+      {/* 狭い画面 (2xl 未満) 向け: DLsite ブログパーツ 2枠を本文に */}
+      <section className="space-y-4 2xl:hidden">
         <div className="inline-flex items-center rounded-md bg-muted/20 px-2.5 py-1 text-xs font-bold tracking-wider text-text">
           PR / 広告
         </div>
@@ -281,7 +282,7 @@ export default async function HomePage() {
         </div>
       </section>
       </div>
-      <div className="lg:sticky lg:top-[4.5rem] lg:self-start">{rightWidget}</div>
+      <div className="2xl:sticky 2xl:top-[4.5rem] 2xl:self-start">{rightWidget}</div>
     </div>
   );
 }
