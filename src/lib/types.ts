@@ -48,4 +48,6 @@ export type Tag = {
   category: TagCategory;
   subcategory?: string;
   aliases?: string[];
+  /** タグページの SEO 用説明文（100〜200字） */
+  description?: string;
 };

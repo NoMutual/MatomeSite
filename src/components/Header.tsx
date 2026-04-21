@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { KeywordSearchBox } from "./KeywordSearchBox";
 
 const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "素人の極み";
 
@@ -34,13 +35,7 @@ export function Header() {
           </Link>
         </nav>
 
-        <form action="/works" method="get" className="ml-auto hidden md:block">
-          <input
-            name="keyword"
-            placeholder="作品を検索..."
-            className="h-9 w-56 rounded-lg border border-border bg-surface px-3 text-sm placeholder:text-muted/70 focus:border-primary focus:outline-none"
-          />
-        </form>
+        <KeywordSearchBox className="ml-auto hidden md:block" />
 
         <Link
           href="/works"
