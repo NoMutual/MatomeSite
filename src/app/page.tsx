@@ -4,8 +4,8 @@ import { TAG_CATEGORY_LABEL, TAGS } from "@/lib/tags";
 import type { TagCategory } from "@/lib/types";
 import { getAllTaggedWorks, getTagCounts } from "@/lib/work-tags-store";
 
-/** ランダム並びを毎リクエストで変えるため ISR キャッシュを無効化 */
-export const dynamic = "force-dynamic";
+/** 6時間ごとに再生成。再生成のたびにランダム並びが更新される */
+export const revalidate = 21600;
 
 const PICK_SIZE = 24;
 
@@ -75,7 +75,7 @@ export default async function HomePage() {
           <div>
             <h2 className="text-xl font-bold md:text-2xl">今日のピック</h2>
             <p className="mt-1 text-xs text-muted">
-              極みタグ付きの作品から {PICK_SIZE} 件をランダム表示・訪れるたびに変わります
+              極みタグ付きの作品から {PICK_SIZE} 件をランダム表示・6時間ごとに入れ替え
             </p>
           </div>
           <Link
