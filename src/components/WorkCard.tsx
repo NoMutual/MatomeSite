@@ -71,19 +71,20 @@ export function WorkCard({ item, work }: Props) {
         )}
       </div>
 
-      <div className="space-y-2 p-3">
-        <h3 className="line-clamp-2 text-sm font-semibold leading-snug text-text md:text-[14px]">
+      {/* モバイルはタイトル行のみ、md 以上でタグ・日付も表示 */}
+      <div className="space-y-2 p-2 md:p-3">
+        <h3 className="line-clamp-2 text-xs font-semibold leading-snug text-text md:text-sm">
           {data.title}
         </h3>
 
         {data.performer && data.performer.length > 0 && (
-          <div className="line-clamp-1 text-xs text-muted">
+          <div className="hidden line-clamp-1 text-xs text-muted md:block">
             {data.performer.slice(0, 3).join(" / ")}
           </div>
         )}
 
         {displayTags.length > 0 && (
-          <div className="flex flex-wrap gap-1">
+          <div className="hidden flex-wrap gap-1 md:flex">
             {displayTags.slice(0, 3).map((t) => (
               <span
                 key={t.slug}
@@ -98,7 +99,7 @@ export function WorkCard({ item, work }: Props) {
           </div>
         )}
 
-        <div className="pt-1">
+        <div className="hidden pt-1 md:block">
           <span className="text-[10px] text-muted">{data.date}</span>
         </div>
       </div>

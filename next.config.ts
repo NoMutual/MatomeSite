@@ -25,17 +25,19 @@ const securityHeaders = [
     value: [
       "default-src 'self'",
       // 画像は DUGA の CDN を許可
-      "img-src 'self' data: blob: https://pic.duga.jp https://pics.dmm.co.jp https://www.dlsite.com",
+      "img-src 'self' data: blob: https://pic.duga.jp https://pics.dmm.co.jp https://*.dlsite.com https://*.dlsite.jp",
       // サンプル動画は DUGA CDN のみ
       "media-src 'self' blob: https://affsample.duga.jp",
       // Next.js はインラインスクリプト・スタイルを使うので unsafe-inline 必要
-      // DLsite ブログパーツの外部 JS を許可
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.dlsite.com",
-      "style-src 'self' 'unsafe-inline'",
+      // DLsite ブログパーツの外部 JS を許可 (サブドメイン含む)
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.dlsite.com https://*.dlsite.jp",
+      "style-src 'self' 'unsafe-inline' https://*.dlsite.com",
       // フォント
       "font-src 'self' data:",
       // DLsite ブログパーツが XHR/fetch する先
-      "connect-src 'self' https://www.dlsite.com",
+      "connect-src 'self' https://*.dlsite.com https://*.dlsite.jp",
+      // DLsite 広告が iframe を使う場合に備えて許可
+      "frame-src 'self' https://*.dlsite.com https://*.dlsite.jp https://dlaf.jp",
       // iframe 埋込禁止
       "frame-ancestors 'none'",
       "base-uri 'self'",
