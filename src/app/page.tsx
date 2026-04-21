@@ -1,22 +1,27 @@
 import Link from "next/link";
-import { fetchAmateurItems } from "@/lib/duga";
 import { WorkCard } from "@/components/WorkCard";
 import { TAG_CATEGORY_LABEL, TAGS } from "@/lib/tags";
 import type { TagCategory } from "@/lib/types";
-import { getTagCounts } from "@/lib/work-tags-store";
+import { getAllTaggedWorks, getTagCounts } from "@/lib/work-tags-store";
 
-export const revalidate = 21600;
+/** ランダム並びを毎リクエストで変えるため ISR キャッシュを無効化 */
+export const dynamic = "force-dynamic";
+
+const PICK_SIZE = 24;
+
+function shuffle<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
 
 export default async function HomePage() {
-  let items: Awaited<ReturnType<typeof fetchAmateurItems>>["items"] = [];
-  let error: string | null = null;
-
-  try {
-    const result = await fetchAmateurItems({ hits: 24, sort: "new" });
-    items = result.items;
-  } catch (e) {
-    error = e instanceof Error ? e.message : "不明なエラー";
-  }
+  // 極みタグが付いている作品からランダムに PICK_SIZE 件
+  const tagged = getAllTaggedWorks().filter((w) => w.tags.length > 0);
+  const works = shuffle(tagged).slice(0, PICK_SIZE);
 
   const tagCounts = getTagCounts();
   const categories = Object.entries(TAG_CATEGORY_LABEL) as [TagCategory, string][];
@@ -64,45 +69,38 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 新着 */}
+      {/* 今日のピック（ランダム） */}
       <section>
         <div className="mb-4 flex items-end justify-between">
           <div>
-            <h2 className="text-xl font-bold md:text-2xl">
-              新着作品
-            </h2>
+            <h2 className="text-xl font-bold md:text-2xl">今日のピック</h2>
             <p className="mt-1 text-xs text-muted">
-              DUGA 素人系カテゴリから最新 24 件
+              極みタグ付きの作品から {PICK_SIZE} 件をランダム表示・訪れるたびに変わります
             </p>
           </div>
           <Link
             href="/works"
             className="text-xs font-medium text-primary hover:text-primary-2"
           >
-            もっと見る →
+            全作品を見る →
           </Link>
         </div>
 
-        {error && (
+        {works.length === 0 && (
           <div className="rounded-xl border border-border bg-surface p-6 text-sm">
             <p className="font-medium text-text">
-              APIから作品を取得できませんでした
+              タグ付き作品がまだありません
             </p>
-            <p className="mt-1 text-muted">{error}</p>
-            <p className="mt-3 text-xs text-muted">
-              APEX（DUGA）アフィリエイト登録後、{" "}
-              <code className="rounded bg-black/40 px-1.5 py-0.5 text-[11px]">
-                .env.local
-              </code>{" "}
-              に認証情報を設定してください。
+            <p className="mt-1 text-muted">
+              データは 3 時間ごとに自動更新されます。
             </p>
           </div>
         )}
 
-        {items.length > 0 && (
+        {works.length > 0 && (
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 md:gap-4 lg:grid-cols-5 xl:grid-cols-6">
-            {items.map((item) => (
-              <WorkCard key={item.productid} item={item} />
+            {works.map((w) => (
+              <WorkCard key={w.productid} work={w} />
             ))}
           </div>
         )}
