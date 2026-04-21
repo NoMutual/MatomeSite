@@ -86,7 +86,7 @@ export default async function WorksPage({ searchParams }: Props) {
 
         {works.length > 0 && (
           <>
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4">
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-5 xl:grid-cols-3">
               {works.map((w) => (
                 <WorkCard key={w.productid} work={w} />
               ))}

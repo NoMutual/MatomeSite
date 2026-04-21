@@ -61,7 +61,7 @@ export default async function TagDetailPage({ params }: Props) {
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 md:gap-4 lg:grid-cols-5 xl:grid-cols-6">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-5 lg:grid-cols-3 xl:grid-cols-4">
           {works.map((w) => (
             <WorkCard key={w.productid} work={w} />
           ))}
