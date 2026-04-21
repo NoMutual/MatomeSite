@@ -29,12 +29,13 @@ const securityHeaders = [
       // サンプル動画は DUGA CDN のみ
       "media-src 'self' blob: https://affsample.duga.jp",
       // Next.js はインラインスクリプト・スタイルを使うので unsafe-inline 必要
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+      // DLsite ブログパーツの外部 JS を許可
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.dlsite.com",
       "style-src 'self' 'unsafe-inline'",
       // フォント
       "font-src 'self' data:",
-      // 外部アフィリンク先
-      "connect-src 'self'",
+      // DLsite ブログパーツが XHR/fetch する先
+      "connect-src 'self' https://www.dlsite.com",
       // iframe 埋込禁止
       "frame-ancestors 'none'",
       "base-uri 'self'",

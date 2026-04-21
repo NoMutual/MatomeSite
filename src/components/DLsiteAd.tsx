@@ -66,16 +66,55 @@ export function DLsiteAd({ banner = "maniax" }: Props) {
   );
 }
 
+import { DLsiteBlogparts } from "./DLsiteBlogparts";
+
 /**
- * サイドバー用: 3 種類のバナーを縦積み
+ * サイドバー用。
+ * - 右サイド: DLsite 公式ブログパーツ (爆乳キーワード・レビュー順3作品を自動ローテート)
+ * - 左サイド: 静的バナー 3種類
  */
 export function DLsiteAdSidebar({ side = "right" }: { side?: "left" | "right" }) {
+  if (side === "right") {
+    return (
+      <aside className="hidden space-y-4 lg:block">
+        <div className="text-[10px] font-bold tracking-wider text-muted/60 uppercase">
+          PR
+        </div>
+        <div className="overflow-hidden rounded-xl border border-border bg-surface p-2">
+          <DLsiteBlogparts
+            containerId="dl-bp-right"
+            config={{
+              base: "https://www.dlsite.com/",
+              type: "keyword",
+              site: "maniax",
+              query: {
+                keyword: "爆乳",
+                order: "review_d",
+                ana_flg: "all",
+                options: ["-GRO", "-MEN"],
+              },
+              title: "キーワード作品",
+              display: "vertical",
+              detail: "1",
+              column: "v",
+              image: "large",
+              count: "3",
+              wrapper: "1",
+              autorotate: true,
+              aid: "shiroutokiwami",
+            }}
+          />
+        </div>
+      </aside>
+    );
+  }
+
+  // 左サイド: 既存の静的バナー3種縦積み
   return (
     <aside className="hidden space-y-4 lg:block">
       <DLsiteAd banner="maniax" />
       <DLsiteAd banner="books" />
       <DLsiteAd banner="pro" />
-      <span className="hidden">{side}</span>
     </aside>
   );
 }
