@@ -175,6 +175,65 @@ export default async function HomePage() {
         )}
       </section>
 
+      {/* モバイル専用: DLsite ブログパーツ 2枠 (デスクトップはサイドバーに表示) */}
+      <section className="space-y-4 lg:hidden">
+        <div className="inline-flex items-center rounded-md bg-muted/20 px-2.5 py-1 text-xs font-bold tracking-wider text-text">
+          PR / 広告
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div className="overflow-hidden rounded-xl border border-border bg-surface p-2">
+            <DLsiteBlogparts
+              containerId="dl-bp-mobile-chijo"
+              config={{
+                base: "https://www.dlsite.com/",
+                type: "keyword",
+                site: "maniax",
+                query: {
+                  keyword: "痴女",
+                  order: "review_d",
+                  ana_flg: "all",
+                  options: ["-GRO", "-MEN"],
+                },
+                title: "キーワード作品",
+                display: "vertical",
+                detail: "1",
+                column: "v",
+                image: "large",
+                count: "3",
+                wrapper: "1",
+                autorotate: true,
+                aid: "shiroutokiwami",
+              }}
+            />
+          </div>
+          <div className="overflow-hidden rounded-xl border border-border bg-surface p-2">
+            <DLsiteBlogparts
+              containerId="dl-bp-mobile-bakunyu"
+              config={{
+                base: "https://www.dlsite.com/",
+                type: "keyword",
+                site: "maniax",
+                query: {
+                  keyword: "爆乳",
+                  order: "review_d",
+                  ana_flg: "all",
+                  options: ["-GRO", "-MEN"],
+                },
+                title: "キーワード作品",
+                display: "vertical",
+                detail: "1",
+                column: "v",
+                image: "large",
+                count: "3",
+                wrapper: "1",
+                autorotate: true,
+                aid: "shiroutokiwami",
+              }}
+            />
+          </div>
+        </div>
+      </section>
+
       {/* タグで探す */}
       <section>
         <div className="mb-6">
