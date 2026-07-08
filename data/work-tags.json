@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-08T05:52:34.273Z",
+  "generated_at": "2026-07-08T08:29:46.993Z",
   "items": {
     "doc-2123": {
       "tags": [
@@ -43637,6 +43637,7 @@
     },
     "star-4452": {
       "tags": [
+        "gachi",
         "seiso",
         "pocchari"
       ],
@@ -43680,8 +43681,8 @@
         "category": [
           {
             "data": {
-              "id": "01",
-              "name": "素人"
+              "id": "03",
+              "name": "のぞき"
             }
           }
         ]
