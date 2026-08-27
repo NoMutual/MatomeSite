@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-27T00:30:26.368Z",
+  "generated_at": "2026-08-27T13:52:04.855Z",
   "items": {
     "doc-2123": {
       "tags": [
@@ -36334,7 +36334,7 @@
         "affiliateurl": "https://click.duga.jp/ppv/firststar-2548/48917-01",
         "opendate": "2026/05/27",
         "releasedate": "2026/05/27",
-        "price": "294円～",
+        "price": "150円～",
         "jacketimage": [
           {
             "small": "https://pic.duga.jp/unsecure/firststar/2548/noauth/jacket_120.jpg"
@@ -36441,7 +36441,7 @@
         "affiliateurl": "https://click.duga.jp/ppv/firststar-2549/48917-01",
         "opendate": "2026/05/27",
         "releasedate": "2026/05/27",
-        "price": "294円～",
+        "price": "150円～",
         "jacketimage": [
           {
             "small": "https://pic.duga.jp/unsecure/firststar/2549/noauth/jacket_120.jpg"
@@ -36492,7 +36492,7 @@
         "affiliateurl": "https://click.duga.jp/ppv/firststar-2550/48917-01",
         "opendate": "2026/05/27",
         "releasedate": "2026/05/27",
-        "price": "294円～",
+        "price": "150円～",
         "jacketimage": [
           {
             "small": "https://pic.duga.jp/unsecure/firststar/2550/noauth/jacket_120.jpg"
@@ -36543,7 +36543,7 @@
         "affiliateurl": "https://click.duga.jp/ppv/mercury-1665/48917-01",
         "opendate": "2026/05/27",
         "releasedate": "2026/05/27",
-        "price": "294円～",
+        "price": "150円～",
         "jacketimage": [
           {
             "small": "https://pic.duga.jp/unsecure/mercury/1665/noauth/jacket_120.jpg"
@@ -36595,7 +36595,7 @@
         "affiliateurl": "https://click.duga.jp/ppv/kedamono-0047/48917-01",
         "opendate": "2026/05/27",
         "releasedate": "2026/05/27",
-        "price": "177円～",
+        "price": "100円～",
         "jacketimage": [
           {
             "small": "https://pic.duga.jp/unsecure/kedamono/0047/noauth/jacket_120.jpg"
@@ -36653,7 +36653,7 @@
         "affiliateurl": "https://click.duga.jp/ppv/firststar-2555/48917-01",
         "opendate": "2026/05/27",
         "releasedate": "2026/05/27",
-        "price": "294円～",
+        "price": "150円～",
         "jacketimage": [
           {
             "small": "https://pic.duga.jp/unsecure/firststar/2555/noauth/jacket_120.jpg"
@@ -36711,7 +36711,7 @@
         "affiliateurl": "https://click.duga.jp/ppv/mercury-1666/48917-01",
         "opendate": "2026/05/27",
         "releasedate": "2026/05/27",
-        "price": "294円～",
+        "price": "150円～",
         "jacketimage": [
           {
             "small": "https://pic.duga.jp/unsecure/mercury/1666/noauth/jacket_120.jpg"
@@ -36762,7 +36762,7 @@
         "affiliateurl": "https://click.duga.jp/ppv/angurahonpo-0042/48917-01",
         "opendate": "2026/05/27",
         "releasedate": "2026/05/27",
-        "price": "500円～",
+        "price": "300円～",
         "jacketimage": [
           {
             "small": "https://pic.duga.jp/unsecure/angurahonpo/0042/noauth/jacket_120.jpg"
@@ -61486,6 +61486,904 @@
             "id": "paradisetv",
             "name": "パラダイステレビ",
             "number": "5242"
+          }
+        ],
+        "category": [
+          {
+            "data": {
+              "id": "01",
+              "name": "素人"
+            }
+          }
+        ]
+      }
+    },
+    "goonies-0160": {
+      "tags": [],
+      "date": "2026-09-10",
+      "item": {
+        "productid": "goonies-0160",
+        "title": "終わらない負の連鎖！？芸能界デビューの闇",
+        "caption": "業界騒然！？ついに暴かれ始めた芸能界の闇。枕営業は昔から存在した！？某大手プロダクションの手口を公開。事務所に呼び出されたまだ名も無きアイドルたち…。世間話からのマッサージ。その手は段々と胸やスカートの中に…。「可愛いね？デビューしたいんでしょ？」断る事の出来ない女性たちは…！？",
+        "makername": "グーニーズ",
+        "url": "https://duga.jp/ppv/goonies-0160/",
+        "affiliateurl": "https://click.duga.jp/ppv/goonies-0160/48917-01",
+        "opendate": "2026/08/27",
+        "releasedate": "2026/09/10",
+        "price": "1,280円～",
+        "jacketimage": [
+          {
+            "small": "https://pic.duga.jp/unsecure/goonies/0160/noauth/jacket_120.jpg"
+          },
+          {
+            "midium": "https://pic.duga.jp/unsecure/goonies/0160/noauth/jacket_240.jpg"
+          },
+          {
+            "large": "https://pic.duga.jp/unsecure/goonies/0160/noauth/jacket.jpg"
+          }
+        ],
+        "samplemovie": [
+          {
+            "midium": {
+              "movie": "https://affsample.duga.jp/unsecure/goonies-0160/noauth/movie.mp4",
+              "capture": "https://affsample.duga.jp/unsecure/goonies-0160/noauth/flvcap.jpg"
+            }
+          }
+        ],
+        "label": [
+          {
+            "id": "goonies",
+            "name": "Goonies",
+            "number": "0160"
+          }
+        ],
+        "category": [
+          {
+            "data": {
+              "id": "01",
+              "name": "素人"
+            }
+          }
+        ]
+      }
+    },
+    "firststar-2585": {
+      "tags": [
+        "bakunyu"
+      ],
+      "date": "2026-08-27",
+      "item": {
+        "productid": "firststar-2585",
+        "title": "マチアプで知り合った爆乳ヤリマン生保レディ エレナ",
+        "caption": "マチアプで知り合ったHカップ生保レディ・エレナちゃん。天然爆乳と営業周り後のパンストがエロい身体をよりエロく見せる。そんな彼女に今日も僕はゴムもつけずに大中出ししちゃうのです。",
+        "makername": "ファーストスター",
+        "url": "https://duga.jp/ppv/firststar-2585/",
+        "affiliateurl": "https://click.duga.jp/ppv/firststar-2585/48917-01",
+        "opendate": "2026/08/27",
+        "releasedate": "2026/08/27",
+        "price": "294円～",
+        "jacketimage": [
+          {
+            "small": "https://pic.duga.jp/unsecure/firststar/2585/noauth/jacket_120.jpg"
+          },
+          {
+            "midium": "https://pic.duga.jp/unsecure/firststar/2585/noauth/jacket_240.jpg"
+          },
+          {
+            "large": "https://pic.duga.jp/unsecure/firststar/2585/noauth/jacket.jpg"
+          }
+        ],
+        "samplemovie": [
+          {
+            "midium": {
+              "movie": "https://affsample.duga.jp/unsecure/firststar-2585/noauth/movie.mp4",
+              "capture": "https://affsample.duga.jp/unsecure/firststar-2585/noauth/flvcap.jpg"
+            }
+          }
+        ],
+        "label": [
+          {
+            "id": "firststar",
+            "name": "First Star",
+            "number": "2585"
+          }
+        ],
+        "category": [
+          {
+            "data": {
+              "id": "01",
+              "name": "素人"
+            }
+          }
+        ]
+      }
+    },
+    "firststar-2586": {
+      "tags": [
+        "hotel",
+        "bijin"
+      ],
+      "date": "2026-08-27",
+      "item": {
+        "productid": "firststar-2586",
+        "title": "Jカップ超乳素人美女 ニーナ（30）",
+        "caption": "どエロいアニメ体型のニーナさんはJカップでした。恋愛相談してたらいつの間にかホテルに。あんなにムチムチボディなのに感じやすいのは最高すぎでちょっともうこのフォルム以外楽しめなくなりそうです。",
+        "makername": "ファーストスター",
+        "url": "https://duga.jp/ppv/firststar-2586/",
+        "affiliateurl": "https://click.duga.jp/ppv/firststar-2586/48917-01",
+        "opendate": "2026/08/27",
+        "releasedate": "2026/08/27",
+        "price": "294円～",
+        "jacketimage": [
+          {
+            "small": "https://pic.duga.jp/unsecure/firststar/2586/noauth/jacket_120.jpg"
+          },
+          {
+            "midium": "https://pic.duga.jp/unsecure/firststar/2586/noauth/jacket_240.jpg"
+          },
+          {
+            "large": "https://pic.duga.jp/unsecure/firststar/2586/noauth/jacket.jpg"
+          }
+        ],
+        "samplemovie": [
+          {
+            "midium": {
+              "movie": "https://affsample.duga.jp/unsecure/firststar-2586/noauth/movie.mp4",
+              "capture": "https://affsample.duga.jp/unsecure/firststar-2586/noauth/flvcap.jpg"
+            }
+          }
+        ],
+        "label": [
+          {
+            "id": "firststar",
+            "name": "First Star",
+            "number": "2586"
+          }
+        ],
+        "category": [
+          {
+            "data": {
+              "id": "01",
+              "name": "素人"
+            }
+          }
+        ]
+      }
+    },
+    "firststar-2587": {
+      "tags": [
+        "joshidai"
+      ],
+      "date": "2026-08-27",
+      "item": {
+        "productid": "firststar-2587",
+        "title": "Fカップ女子大生は性を学びたい たお（21）",
+        "caption": "好奇心旺盛な大学生たおちゃんは経験豊富な年上おじに色々教わりたい変態さんです！初めてのテンガ装着手マンに大絶頂！で新しい性の喜びを得てもうおじさんの虜になってしまいました。",
+        "makername": "ファーストスター",
+        "url": "https://duga.jp/ppv/firststar-2587/",
+        "affiliateurl": "https://click.duga.jp/ppv/firststar-2587/48917-01",
+        "opendate": "2026/08/27",
+        "releasedate": "2026/08/27",
+        "price": "294円～",
+        "jacketimage": [
+          {
+            "small": "https://pic.duga.jp/unsecure/firststar/2587/noauth/jacket_120.jpg"
+          },
+          {
+            "midium": "https://pic.duga.jp/unsecure/firststar/2587/noauth/jacket_240.jpg"
+          },
+          {
+            "large": "https://pic.duga.jp/unsecure/firststar/2587/noauth/jacket.jpg"
+          }
+        ],
+        "samplemovie": [
+          {
+            "midium": {
+              "movie": "https://affsample.duga.jp/unsecure/firststar-2587/noauth/movie.mp4",
+              "capture": "https://affsample.duga.jp/unsecure/firststar-2587/noauth/flvcap.jpg"
+            }
+          }
+        ],
+        "label": [
+          {
+            "id": "firststar",
+            "name": "First Star",
+            "number": "2587"
+          }
+        ],
+        "category": [
+          {
+            "data": {
+              "id": "01",
+              "name": "素人"
+            }
+          }
+        ]
+      }
+    },
+    "mercury-1705": {
+      "tags": [
+        "slender"
+      ],
+      "date": "2026-08-27",
+      "item": {
+        "productid": "mercury-1705",
+        "title": "～最新神エロ動画速報＃01～",
+        "caption": "細身でかわいらしいお嬢さんとエッチなお遊び動画！最新のエロ動画はレベルが高すぎます。見て損なしソクヌキ動画！！",
+        "makername": "マーキュリー",
+        "url": "https://duga.jp/ppv/mercury-1705/",
+        "affiliateurl": "https://click.duga.jp/ppv/mercury-1705/48917-01",
+        "opendate": "2026/08/27",
+        "releasedate": "2026/08/27",
+        "price": "294円～",
+        "jacketimage": [
+          {
+            "small": "https://pic.duga.jp/unsecure/mercury/1705/noauth/jacket_120.jpg"
+          },
+          {
+            "midium": "https://pic.duga.jp/unsecure/mercury/1705/noauth/jacket_240.jpg"
+          },
+          {
+            "large": "https://pic.duga.jp/unsecure/mercury/1705/noauth/jacket.jpg"
+          }
+        ],
+        "samplemovie": [
+          {
+            "midium": {
+              "movie": "https://affsample.duga.jp/unsecure/mercury-1705/noauth/movie.mp4",
+              "capture": "https://affsample.duga.jp/unsecure/mercury-1705/noauth/flvcap.jpg"
+            }
+          }
+        ],
+        "label": [
+          {
+            "id": "mercury",
+            "name": "MERCURY",
+            "number": "1705"
+          }
+        ],
+        "category": [
+          {
+            "data": {
+              "id": "01",
+              "name": "素人"
+            }
+          }
+        ]
+      }
+    },
+    "youare-0113": {
+      "tags": [
+        "nampa"
+      ],
+      "date": "2026-08-27",
+      "item": {
+        "productid": "youare-0113",
+        "title": "「いれてください」無許可中出しに泣きべそ",
+        "caption": "夏だ！海だ！素人ナンパだ！男優3人がいくプロナンパ！ナンパに成功し三人の内一人と合体してしまったななちゃん！今回はちがう、ち○ぽを生でいれられ「ダメダメ」と最初は戸惑うがプロの腰つきに「気持ちいい」と受け入れてしまう！ち○ぽの味が変わって快楽に溺れるのを我慢している表情でピストンが止まると押し寄せてくる余韻でトロ顔を晒す。勢いで無許可中出しに泣きべそかきながら「赤ちゃんできちゃう！」と訴えるが…！素人・ナンパ・中出し・正常位・バック・騎乗位。",
+        "makername": "You are",
+        "url": "https://duga.jp/ppv/youare-0113/",
+        "affiliateurl": "https://click.duga.jp/ppv/youare-0113/48917-01",
+        "opendate": "2026/08/27",
+        "releasedate": "2026/08/27",
+        "price": "1,180円～",
+        "jacketimage": [
+          {
+            "small": "https://pic.duga.jp/unsecure/youare/0113/noauth/jacket_120.jpg"
+          },
+          {
+            "midium": "https://pic.duga.jp/unsecure/youare/0113/noauth/jacket_240.jpg"
+          },
+          {
+            "large": "https://pic.duga.jp/unsecure/youare/0113/noauth/jacket.jpg"
+          }
+        ],
+        "samplemovie": [
+          {
+            "midium": {
+              "movie": "https://affsample.duga.jp/unsecure/youare-0113/noauth/movie.mp4",
+              "capture": "https://affsample.duga.jp/unsecure/youare-0113/noauth/flvcap.jpg"
+            }
+          }
+        ],
+        "label": [
+          {
+            "id": "youare",
+            "name": "You are",
+            "number": "0113"
+          }
+        ],
+        "category": [
+          {
+            "data": {
+              "id": "01",
+              "name": "素人"
+            }
+          }
+        ]
+      }
+    },
+    "firststar-2588": {
+      "tags": [
+        "do-m"
+      ],
+      "date": "2026-08-27",
+      "item": {
+        "productid": "firststar-2588",
+        "title": "秒でイッちゃうドMハンバーガー店員 のあ（25）",
+        "caption": "彼氏もセフレもいないが日課のオナニーは欠かさない！敏感すぎるクリトリスがすぐに絶頂！立て続けに何度もイッてしまい暴走モード全開！のあちゃんは、とんでもないむっつり痴女でした。",
+        "makername": "ファーストスター",
+        "url": "https://duga.jp/ppv/firststar-2588/",
+        "affiliateurl": "https://click.duga.jp/ppv/firststar-2588/48917-01",
+        "opendate": "2026/08/27",
+        "releasedate": "2026/08/27",
+        "price": "294円～",
+        "jacketimage": [
+          {
+            "small": "https://pic.duga.jp/unsecure/firststar/2588/noauth/jacket_120.jpg"
+          },
+          {
+            "midium": "https://pic.duga.jp/unsecure/firststar/2588/noauth/jacket_240.jpg"
+          },
+          {
+            "large": "https://pic.duga.jp/unsecure/firststar/2588/noauth/jacket.jpg"
+          }
+        ],
+        "samplemovie": [
+          {
+            "midium": {
+              "movie": "https://affsample.duga.jp/unsecure/firststar-2588/noauth/movie.mp4",
+              "capture": "https://affsample.duga.jp/unsecure/firststar-2588/noauth/flvcap.jpg"
+            }
+          }
+        ],
+        "label": [
+          {
+            "id": "firststar",
+            "name": "First Star",
+            "number": "2588"
+          }
+        ],
+        "category": [
+          {
+            "data": {
+              "id": "01",
+              "name": "素人"
+            }
+          }
+        ]
+      }
+    },
+    "firststar-2594": {
+      "tags": [],
+      "date": "2026-08-27",
+      "item": {
+        "productid": "firststar-2594",
+        "title": "沖縄産ミニマムGカップ。 七羽",
+        "caption": "「ガチ精子」「ゴムなし」「1980円」シリーズに七羽ちゃんがやってきてくれました。ミニマムなのに似合わなすぎるGカップのど迫力おぱい。エキゾチックなお顔に似合わず、何度も求めてくるキュンキュンしちゃう女子でした。",
+        "makername": "ファーストスター",
+        "url": "https://duga.jp/ppv/firststar-2594/",
+        "affiliateurl": "https://click.duga.jp/ppv/firststar-2594/48917-01",
+        "opendate": "2026/08/27",
+        "releasedate": "2026/08/27",
+        "price": "294円～",
+        "jacketimage": [
+          {
+            "small": "https://pic.duga.jp/unsecure/firststar/2594/noauth/jacket_120.jpg"
+          },
+          {
+            "midium": "https://pic.duga.jp/unsecure/firststar/2594/noauth/jacket_240.jpg"
+          },
+          {
+            "large": "https://pic.duga.jp/unsecure/firststar/2594/noauth/jacket.jpg"
+          }
+        ],
+        "samplemovie": [
+          {
+            "midium": {
+              "movie": "https://affsample.duga.jp/unsecure/firststar-2594/noauth/movie.mp4",
+              "capture": "https://affsample.duga.jp/unsecure/firststar-2594/noauth/flvcap.jpg"
+            }
+          }
+        ],
+        "label": [
+          {
+            "id": "firststar",
+            "name": "First Star",
+            "number": "2594"
+          }
+        ],
+        "category": [
+          {
+            "data": {
+              "id": "01",
+              "name": "素人"
+            }
+          }
+        ],
+        "performer": [
+          {
+            "data": {
+              "id": "21927",
+              "name": "沙優七羽",
+              "kana": "ｻﾕｳ ﾅﾅﾊ"
+            }
+          }
+        ]
+      }
+    },
+    "maiwife-0006": {
+      "tags": [
+        "joshidai",
+        "ol",
+        "seiso",
+        "slender"
+      ],
+      "date": "2026-05-29",
+      "item": {
+        "productid": "maiwife-0006",
+        "title": "AI舞ワイフ～選ばれたアナタに上質な出会いを～6",
+        "caption": "【静香】平日はオフィスカジュアルに身を包むOL。プライベートでは一人の女性として解放感を求める。香水、ランジェリー、指先のケアまで、至近距離で見られることを意識を欠かさない。刺激的な日常を求めている紳士な方に、贅沢な大人の遊びを楽しませてくれる。【璃来】宝石のような輝きを放つ21歳の現役女子大生。扉を開けた瞬間にその場の空気が華やぐほどの美貌。誰もが振り返る端正な顔立ちとスレンダーで無駄のない曲線美は芸術品。【みさき】清楚なルックスからは想像もつかない、豊潤で柔らかな曲線美。若々しい弾けるような透明感と包み込むような包容力を兼ね備える。日常を忘れる極上の癒しをあなたに…。",
+        "makername": "舞ワイフ",
+        "url": "https://duga.jp/ppv/maiwife-0006/",
+        "affiliateurl": "https://click.duga.jp/ppv/maiwife-0006/48917-01",
+        "opendate": "2026/08/27",
+        "releasedate": "2026/05/29",
+        "price": "400円～",
+        "jacketimage": [
+          {
+            "small": "https://pic.duga.jp/unsecure/maiwife/0006/noauth/jacket_120.jpg"
+          },
+          {
+            "midium": "https://pic.duga.jp/unsecure/maiwife/0006/noauth/jacket_240.jpg"
+          },
+          {
+            "large": "https://pic.duga.jp/unsecure/maiwife/0006/noauth/jacket.jpg"
+          }
+        ],
+        "samplemovie": [
+          {
+            "midium": {
+              "movie": "https://affsample.duga.jp/unsecure/maiwife-0006/noauth/movie.mp4",
+              "capture": "https://affsample.duga.jp/unsecure/maiwife-0006/noauth/flvcap.jpg"
+            }
+          }
+        ],
+        "label": [
+          {
+            "id": "maiwife",
+            "name": "舞ワイフ",
+            "number": "0006"
+          }
+        ],
+        "category": [
+          {
+            "data": {
+              "id": "01",
+              "name": "素人"
+            }
+          }
+        ]
+      }
+    },
+    "paradisetv-5243": {
+      "tags": [
+        "ol"
+      ],
+      "date": "2026-06-20",
+      "item": {
+        "productid": "paradisetv-5243",
+        "title": "催●術でイケないカラダにされた素人娘（1）",
+        "caption": "モニターとしてやってきたのは会社員の女性。催○術を甘く見ていたが…。かかりやすい体質でまんまとエロくなる催○術。部屋で待機させてみたらオナニー始めちゃった！オナニー中に突撃！快楽攻めで手マン、クンニでイカセまくったところで、イケなくなる催○術を！バイブで攻めてもイキたくてもイケない。フェラ中も自ら股間を触る！チンポを入れてもイケない中、ついに催○術から解放！白目をむいて爆イキ絶叫！",
+        "makername": "パラダイステレビ",
+        "url": "https://duga.jp/ppv/paradisetv-5243/",
+        "affiliateurl": "https://click.duga.jp/ppv/paradisetv-5243/48917-01",
+        "opendate": "2026/08/27",
+        "releasedate": "2026/06/20",
+        "price": "2,037円～",
+        "jacketimage": [
+          {
+            "small": "https://pic.duga.jp/unsecure/paradisetv/5243/noauth/jacket_120.jpg"
+          },
+          {
+            "midium": "https://pic.duga.jp/unsecure/paradisetv/5243/noauth/jacket_240.jpg"
+          },
+          {
+            "large": "https://pic.duga.jp/unsecure/paradisetv/5243/noauth/jacket.jpg"
+          }
+        ],
+        "samplemovie": [
+          {
+            "midium": {
+              "movie": "https://affsample.duga.jp/unsecure/paradisetv-5243/noauth/movie.mp4",
+              "capture": "https://affsample.duga.jp/unsecure/paradisetv-5243/noauth/flvcap.jpg"
+            }
+          }
+        ],
+        "label": [
+          {
+            "id": "paradisetv",
+            "name": "パラダイステレビ",
+            "number": "5243"
+          }
+        ],
+        "category": [
+          {
+            "data": {
+              "id": "01",
+              "name": "素人"
+            }
+          }
+        ]
+      }
+    },
+    "firststar-2591": {
+      "tags": [
+        "hotel",
+        "kyonyu"
+      ],
+      "date": "2026-08-27",
+      "item": {
+        "productid": "firststar-2591",
+        "title": "ちびっ子おっぱいちゃん ふうか",
+        "caption": "「もっとHなこと教えてください」とホテルまでついてくる禁断のセフレふうかちゃん。そんな彼女は同級生には内緒でおぢさんとイケない関係になっている。Gカップの育ちが良い隠れ巨乳を放り出したなら、今日もラッキーおぢがお金も払わず貪り食うのです。",
+        "makername": "ファーストスター",
+        "url": "https://duga.jp/ppv/firststar-2591/",
+        "affiliateurl": "https://click.duga.jp/ppv/firststar-2591/48917-01",
+        "opendate": "2026/08/27",
+        "releasedate": "2026/08/27",
+        "price": "594円～",
+        "jacketimage": [
+          {
+            "small": "https://pic.duga.jp/unsecure/firststar/2591/noauth/jacket_120.jpg"
+          },
+          {
+            "midium": "https://pic.duga.jp/unsecure/firststar/2591/noauth/jacket_240.jpg"
+          },
+          {
+            "large": "https://pic.duga.jp/unsecure/firststar/2591/noauth/jacket.jpg"
+          }
+        ],
+        "samplemovie": [
+          {
+            "midium": {
+              "movie": "https://affsample.duga.jp/unsecure/firststar-2591/noauth/movie.mp4",
+              "capture": "https://affsample.duga.jp/unsecure/firststar-2591/noauth/flvcap.jpg"
+            }
+          }
+        ],
+        "label": [
+          {
+            "id": "firststar",
+            "name": "First Star",
+            "number": "2591"
+          }
+        ],
+        "category": [
+          {
+            "data": {
+              "id": "01",
+              "name": "素人"
+            }
+          }
+        ],
+        "performer": [
+          {
+            "data": {
+              "id": "22412",
+              "name": "望月ふうか",
+              "kana": "ﾓﾁﾂﾞｷ ﾌｳｶ"
+            }
+          }
+        ]
+      }
+    },
+    "mercury-1707": {
+      "tags": [
+        "shiroi"
+      ],
+      "date": "2026-08-27",
+      "item": {
+        "productid": "mercury-1707",
+        "title": "【閲覧注意】トー○で噂のWアナル小娘、激撮。",
+        "caption": "ウブなアナルを売る無邪気なうら若き小娘たちのイマドキの性事情、流出。トー○で知る人ぞ知る美乳のAちゃんと色白のBちゃんの最強エロコンビ。くっさい大人たちの餌食になりまくってます。複雑な家庭環境の中、若さゆえのノリの良さと恥じらいが入り混じり、彼女たちは今を生きている…。合計4アナルSEX収録。 ※本編顔出し",
+        "makername": "マーキュリー",
+        "url": "https://duga.jp/ppv/mercury-1707/",
+        "affiliateurl": "https://click.duga.jp/ppv/mercury-1707/48917-01",
+        "opendate": "2026/08/27",
+        "releasedate": "2026/08/27",
+        "price": "594円～",
+        "jacketimage": [
+          {
+            "small": "https://pic.duga.jp/unsecure/mercury/1707/noauth/jacket_120.jpg"
+          },
+          {
+            "midium": "https://pic.duga.jp/unsecure/mercury/1707/noauth/jacket_240.jpg"
+          },
+          {
+            "large": "https://pic.duga.jp/unsecure/mercury/1707/noauth/jacket.jpg"
+          }
+        ],
+        "samplemovie": [
+          {
+            "midium": {
+              "movie": "https://affsample.duga.jp/unsecure/mercury-1707/noauth/movie.mp4",
+              "capture": "https://affsample.duga.jp/unsecure/mercury-1707/noauth/flvcap.jpg"
+            }
+          }
+        ],
+        "label": [
+          {
+            "id": "mercury",
+            "name": "MERCURY",
+            "number": "1707"
+          }
+        ],
+        "category": [
+          {
+            "data": {
+              "id": "01",
+              "name": "素人"
+            }
+          }
+        ]
+      }
+    },
+    "maiwife-0001": {
+      "tags": [
+        "hotel",
+        "joshidai",
+        "ol",
+        "seiso",
+        "slender"
+      ],
+      "date": "2026-03-13",
+      "item": {
+        "productid": "maiwife-0001",
+        "title": "AI舞ワイフ～選ばれたアナタに上質な出会いを～1",
+        "caption": "【美音】可愛らしさと色気を持ち合わせた私立大学に通う女子大生。男なら一度は抱いてみたいと思わせる洗練されたルックス。彼女とのひとときは最高の癒しと快感をもたらしてくれる。【麻里】優しさオーラを醸し出す○学部に通う才女。豊満なバストともっちり柔肌は抱き心地が抜群。瞳に隠れたエロスは貴方の心を射止めるだろう…。【麻里子】普段は丸の内のオフィスで働くOL。裏の顔はホテルで舞う蝶。清楚な雰囲気からは想像出来ないグラマラスなカラダ。抱き心地が良い体は間違いなく快楽の頂へ連れて行ってくれる…。【明菜】上品なおっとり癒し系。ルックス抜群女子大生。スレンダースタイルに形の良いバストがとても魅力的。特別な輝きを放つ明菜との時間は夢のようなひとときになる。",
+        "makername": "舞ワイフ",
+        "url": "https://duga.jp/ppv/maiwife-0001/",
+        "affiliateurl": "https://click.duga.jp/ppv/maiwife-0001/48917-01",
+        "opendate": "2026/08/27",
+        "releasedate": "2026/03/13",
+        "price": "400円～",
+        "jacketimage": [
+          {
+            "small": "https://pic.duga.jp/unsecure/maiwife/0001/noauth/jacket_120.jpg"
+          },
+          {
+            "midium": "https://pic.duga.jp/unsecure/maiwife/0001/noauth/jacket_240.jpg"
+          },
+          {
+            "large": "https://pic.duga.jp/unsecure/maiwife/0001/noauth/jacket.jpg"
+          }
+        ],
+        "samplemovie": [
+          {
+            "midium": {
+              "movie": "https://affsample.duga.jp/unsecure/maiwife-0001/noauth/movie.mp4",
+              "capture": "https://affsample.duga.jp/unsecure/maiwife-0001/noauth/flvcap.jpg"
+            }
+          }
+        ],
+        "label": [
+          {
+            "id": "maiwife",
+            "name": "舞ワイフ",
+            "number": "0001"
+          }
+        ],
+        "category": [
+          {
+            "data": {
+              "id": "01",
+              "name": "素人"
+            }
+          }
+        ]
+      }
+    },
+    "maiwife-0002": {
+      "tags": [
+        "joshidai",
+        "seiso",
+        "bijin",
+        "half",
+        "kyonyu"
+      ],
+      "date": "2026-03-13",
+      "item": {
+        "productid": "maiwife-0002",
+        "title": "AI舞ワイフ～選ばれたアナタに上質な出会いを～2",
+        "caption": "【理央】都内の名門女子大学に通う絵に描いたような清楚系美女。服を脱ぐと現れる美巨乳は男の癒しの最高峰。彼女との夢のようなひと時はあなたの脳裏に刻まれるだろう。【リサ】アメリカ人と日本人の間に生まれたミステリアスな雰囲気を醸し出すハーフ美女。どんな男も圧倒するグラマラスボディ。彼女のカラダを味わうと他の女を抱くことは出来なくなるだろう。【玲奈】優しい微笑みからは想像出来ない魅力的なカラダを持つ女子大生。彼女の柔肌に触れるだけで至福の幸福感が得られる。女を抱くという男の喜びを存分に味わうことが出来る。【初音】初体験を済ませたばかりの恥ずかしがり屋な女子大生。快楽の虜になった彼女とのセックスは最高の興奮と刺激を与えてくれる。快楽の虜になった彼女とのセックスは最高の興奮と刺激を与えてくれる。",
+        "makername": "舞ワイフ",
+        "url": "https://duga.jp/ppv/maiwife-0002/",
+        "affiliateurl": "https://click.duga.jp/ppv/maiwife-0002/48917-01",
+        "opendate": "2026/08/27",
+        "releasedate": "2026/03/13",
+        "price": "400円～",
+        "jacketimage": [
+          {
+            "small": "https://pic.duga.jp/unsecure/maiwife/0002/noauth/jacket_120.jpg"
+          },
+          {
+            "midium": "https://pic.duga.jp/unsecure/maiwife/0002/noauth/jacket_240.jpg"
+          },
+          {
+            "large": "https://pic.duga.jp/unsecure/maiwife/0002/noauth/jacket.jpg"
+          }
+        ],
+        "samplemovie": [
+          {
+            "midium": {
+              "movie": "https://affsample.duga.jp/unsecure/maiwife-0002/noauth/movie.mp4",
+              "capture": "https://affsample.duga.jp/unsecure/maiwife-0002/noauth/flvcap.jpg"
+            }
+          }
+        ],
+        "label": [
+          {
+            "id": "maiwife",
+            "name": "舞ワイフ",
+            "number": "0002"
+          }
+        ],
+        "category": [
+          {
+            "data": {
+              "id": "01",
+              "name": "素人"
+            }
+          }
+        ]
+      }
+    },
+    "maiwife-0003": {
+      "tags": [
+        "matching",
+        "joshidai",
+        "ol"
+      ],
+      "date": "2026-03-13",
+      "item": {
+        "productid": "maiwife-0003",
+        "title": "AI舞ワイフ～選ばれたアナタに上質な出会いを～3",
+        "caption": "【凛々子】令和の時代に現れた天女は女子アナを夢見る女子大生。その美貌は世の男性を虜にし、魅力に誘われ吸い寄せられる。その美貌は世の男性を虜にし、魅力に誘われ吸い寄せられる。【亜依】都会的な華やかさを纏う美人OL。気品ある佇まいに心を奪われる。女性らしい柔らかさと美しく整ったスタイル。日常では味わえない艶やかなひとときを約束してくれる。【玲華】柔らかな笑顔の奥に大人の色気を秘めた女子大生。男慣れしていない女子大学生だが仕草は誘うような魅力が溢れる。甘く切ない雰囲気は思わず、男の欲情はを誘ってしまう【百合香】完璧なボディと溢れ出る色気を兼ね備えたOL。一目見ただけで男を虜にし次回マッチングが一年以上待ち。蕩けるような心地よい時間を選ばれたあなたに。",
+        "makername": "舞ワイフ",
+        "url": "https://duga.jp/ppv/maiwife-0003/",
+        "affiliateurl": "https://click.duga.jp/ppv/maiwife-0003/48917-01",
+        "opendate": "2026/08/27",
+        "releasedate": "2026/03/13",
+        "price": "400円～",
+        "jacketimage": [
+          {
+            "small": "https://pic.duga.jp/unsecure/maiwife/0003/noauth/jacket_120.jpg"
+          },
+          {
+            "midium": "https://pic.duga.jp/unsecure/maiwife/0003/noauth/jacket_240.jpg"
+          },
+          {
+            "large": "https://pic.duga.jp/unsecure/maiwife/0003/noauth/jacket.jpg"
+          }
+        ],
+        "samplemovie": [
+          {
+            "midium": {
+              "movie": "https://affsample.duga.jp/unsecure/maiwife-0003/noauth/movie.mp4",
+              "capture": "https://affsample.duga.jp/unsecure/maiwife-0003/noauth/flvcap.jpg"
+            }
+          }
+        ],
+        "label": [
+          {
+            "id": "maiwife",
+            "name": "舞ワイフ",
+            "number": "0003"
+          }
+        ],
+        "category": [
+          {
+            "data": {
+              "id": "01",
+              "name": "素人"
+            }
+          }
+        ]
+      }
+    },
+    "maiwife-0004": {
+      "tags": [
+        "joshidai",
+        "model"
+      ],
+      "date": "2026-03-13",
+      "item": {
+        "productid": "maiwife-0004",
+        "title": "AI舞ワイフ～選ばれたアナタに上質な出会いを～4",
+        "caption": "【美音2】濃厚な色気を纏った快楽の天使が再び降臨。美しくも淫らに舞う姿は興奮を一瞬で最高潮にさせる。【芽郁】モデルのような洗練されたスタイルを持つ女子大生。彼女に見つめられただけで貴方の下半身は疼いてしまう。【美波】男を立てる落ち着いた所作が格を引き立てる。陶器のような柔肌と豊満なバストで男に奉仕する。",
+        "makername": "舞ワイフ",
+        "url": "https://duga.jp/ppv/maiwife-0004/",
+        "affiliateurl": "https://click.duga.jp/ppv/maiwife-0004/48917-01",
+        "opendate": "2026/08/27",
+        "releasedate": "2026/03/13",
+        "price": "400円～",
+        "jacketimage": [
+          {
+            "small": "https://pic.duga.jp/unsecure/maiwife/0004/noauth/jacket_120.jpg"
+          },
+          {
+            "midium": "https://pic.duga.jp/unsecure/maiwife/0004/noauth/jacket_240.jpg"
+          },
+          {
+            "large": "https://pic.duga.jp/unsecure/maiwife/0004/noauth/jacket.jpg"
+          }
+        ],
+        "samplemovie": [
+          {
+            "midium": {
+              "movie": "https://affsample.duga.jp/unsecure/maiwife-0004/noauth/movie.mp4",
+              "capture": "https://affsample.duga.jp/unsecure/maiwife-0004/noauth/flvcap.jpg"
+            }
+          }
+        ],
+        "label": [
+          {
+            "id": "maiwife",
+            "name": "舞ワイフ",
+            "number": "0004"
+          }
+        ],
+        "category": [
+          {
+            "data": {
+              "id": "01",
+              "name": "素人"
+            }
+          }
+        ]
+      }
+    },
+    "maiwife-0005": {
+      "tags": [
+        "joshidai",
+        "shiroi"
+      ],
+      "date": "2026-04-10",
+      "item": {
+        "productid": "maiwife-0005",
+        "title": "AI舞ワイフ～選ばれたアナタに上質な出会いを～5",
+        "caption": "【千明】長い間、自分だけの部屋で過ごしてきた彼女。誰の目にも触れてこなかったその肌は透き通るほどに白く繊細。臆病に視線をそらす彼女が、ゆっくりと指先に触れてくる瞬間、言いようのない愛おしさが込み上げてくる。【さちか】都内のIT企業で働く24歳。普段はきっちりデスクワークをこなす。一歩プライベートに踏み込めばそこには知られざる「甘えん坊」な一面が。育ちの良さを感じさせる上品な仕草と時折見せるあどけない笑顔に日々の疲れも癒される。【成海】上品な佇まいからは想像出来ない魅力的なスタイルを持つ女子大生。感度良好なカラダはあなたに最高の刺激を与え女を抱く悦びを実感できるだろう。",
+        "makername": "舞ワイフ",
+        "url": "https://duga.jp/ppv/maiwife-0005/",
+        "affiliateurl": "https://click.duga.jp/ppv/maiwife-0005/48917-01",
+        "opendate": "2026/08/27",
+        "releasedate": "2026/04/10",
+        "price": "400円～",
+        "jacketimage": [
+          {
+            "small": "https://pic.duga.jp/unsecure/maiwife/0005/noauth/jacket_120.jpg"
+          },
+          {
+            "midium": "https://pic.duga.jp/unsecure/maiwife/0005/noauth/jacket_240.jpg"
+          },
+          {
+            "large": "https://pic.duga.jp/unsecure/maiwife/0005/noauth/jacket.jpg"
+          }
+        ],
+        "samplemovie": [
+          {
+            "midium": {
+              "movie": "https://affsample.duga.jp/unsecure/maiwife-0005/noauth/movie.mp4",
+              "capture": "https://affsample.duga.jp/unsecure/maiwife-0005/noauth/flvcap.jpg"
+            }
+          }
+        ],
+        "label": [
+          {
+            "id": "maiwife",
+            "name": "舞ワイフ",
+            "number": "0005"
           }
         ],
         "category": [
