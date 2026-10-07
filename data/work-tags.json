@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T00:24:23.260Z",
+  "generated_at": "2026-10-07T09:56:01.784Z",
   "items": {
     "doc-2123": {
       "tags": [
@@ -47928,7 +47928,7 @@
         "affiliateurl": "https://click.duga.jp/ppv/sodcreate-9480/48917-01",
         "opendate": "2026/07/07",
         "releasedate": "2026/07/07",
-        "price": "700円～",
+        "price": "400円～",
         "jacketimage": [
           {
             "small": "https://pic.duga.jp/unsecure/sodcreate/9480/noauth/jacket_120.jpg"
@@ -48132,7 +48132,7 @@
         "affiliateurl": "https://click.duga.jp/ppv/eshiroutodx-0152/48917-01",
         "opendate": "2026/07/08",
         "releasedate": "2026/07/08",
-        "price": "120円～",
+        "price": "400円～",
         "jacketimage": [
           {
             "small": "https://pic.duga.jp/unsecure/eshiroutodx/0152/noauth/jacket_120.jpg"
@@ -48181,7 +48181,7 @@
         "affiliateurl": "https://click.duga.jp/ppv/eshiroutodx-0153/48917-01",
         "opendate": "2026/07/08",
         "releasedate": "2026/07/08",
-        "price": "120円～",
+        "price": "400円～",
         "jacketimage": [
           {
             "small": "https://pic.duga.jp/unsecure/eshiroutodx/0153/noauth/jacket_120.jpg"
@@ -48230,7 +48230,7 @@
         "affiliateurl": "https://click.duga.jp/ppv/eshiroutodx-0154/48917-01",
         "opendate": "2026/07/08",
         "releasedate": "2026/07/08",
-        "price": "120円～",
+        "price": "400円～",
         "jacketimage": [
           {
             "small": "https://pic.duga.jp/unsecure/eshiroutodx/0154/noauth/jacket_120.jpg"
@@ -48328,7 +48328,7 @@
         "affiliateurl": "https://click.duga.jp/ppv/eshiroutodx-0147/48917-01",
         "opendate": "2026/07/08",
         "releasedate": "2026/07/08",
-        "price": "120円～",
+        "price": "400円～",
         "jacketimage": [
           {
             "small": "https://pic.duga.jp/unsecure/eshiroutodx/0147/noauth/jacket_120.jpg"
@@ -48377,7 +48377,7 @@
         "affiliateurl": "https://click.duga.jp/ppv/eshiroutodx-0148/48917-01",
         "opendate": "2026/07/08",
         "releasedate": "2026/07/08",
-        "price": "120円～",
+        "price": "400円～",
         "jacketimage": [
           {
             "small": "https://pic.duga.jp/unsecure/eshiroutodx/0148/noauth/jacket_120.jpg"
@@ -48573,7 +48573,7 @@
         "affiliateurl": "https://click.duga.jp/ppv/eshiroutodx-0149/48917-01",
         "opendate": "2026/07/08",
         "releasedate": "2026/07/08",
-        "price": "120円～",
+        "price": "400円～",
         "jacketimage": [
           {
             "small": "https://pic.duga.jp/unsecure/eshiroutodx/0149/noauth/jacket_120.jpg"
@@ -48622,7 +48622,7 @@
         "affiliateurl": "https://click.duga.jp/ppv/eshiroutodx-0150/48917-01",
         "opendate": "2026/07/08",
         "releasedate": "2026/07/08",
-        "price": "120円～",
+        "price": "400円～",
         "jacketimage": [
           {
             "small": "https://pic.duga.jp/unsecure/eshiroutodx/0150/noauth/jacket_120.jpg"
@@ -48720,7 +48720,7 @@
         "affiliateurl": "https://click.duga.jp/ppv/eshiroutodx-0151/48917-01",
         "opendate": "2026/07/08",
         "releasedate": "2026/07/08",
-        "price": "120円～",
+        "price": "400円～",
         "jacketimage": [
           {
             "small": "https://pic.duga.jp/unsecure/eshiroutodx/0151/noauth/jacket_120.jpg"
@@ -64735,7 +64735,7 @@
         "affiliateurl": "https://click.duga.jp/ppv/eshiroutodx-0161/48917-01",
         "opendate": "2026/09/04",
         "releasedate": "2026/09/04",
-        "price": "120円～",
+        "price": "400円～",
         "jacketimage": [
           {
             "small": "https://pic.duga.jp/unsecure/eshiroutodx/0161/noauth/jacket_120.jpg"
@@ -64786,7 +64786,7 @@
         "affiliateurl": "https://click.duga.jp/ppv/eshiroutodx-0162/48917-01",
         "opendate": "2026/09/04",
         "releasedate": "2026/09/04",
-        "price": "120円～",
+        "price": "400円～",
         "jacketimage": [
           {
             "small": "https://pic.duga.jp/unsecure/eshiroutodx/0162/noauth/jacket_120.jpg"
@@ -70025,7 +70025,9 @@
       }
     },
     "doc-2379": {
-      "tags": [],
+      "tags": [
+        "doc"
+      ],
       "date": "2026-09-25",
       "item": {
         "productid": "doc-2379",
@@ -72237,7 +72239,7 @@
       "item": {
         "productid": "doc-2396",
         "title": "むぼーびムービー5",
-        "caption": "実家を出ることになったときに引き出しの奥から使ってないHDDが出てきた。タイトルは「ごほーびムービー」ああ、そういえばあったあったそんな事。艶やかな黒髪も、しなやかに伸びる手脚も、手触りのいい肌も、可愛い口も全部俺のもの。あの時のキミはいったいどんな声だったんだろう？",
+        "caption": "実家を出ることになったときに引き出しの奥から使ってないHDDが出てきた。タイトルは「ごほーびムービー」ああ、そういえばあったあったそんな事。艶やかな黒髪も、しなやかに伸びる手脚も、手触りのいい肌も、可愛い口も全部俺のもの。あの時のキミはいったいどんな声だったんだろう？（ふぇち党）",
         "makername": "DOC",
         "url": "https://duga.jp/ppv/doc-2396/",
         "affiliateurl": "https://click.duga.jp/ppv/doc-2396/48917-01",
@@ -73620,6 +73622,58 @@
             "id": "scoop",
             "name": "SCOOP",
             "number": "1160"
+          }
+        ],
+        "category": [
+          {
+            "data": {
+              "id": "01",
+              "name": "素人"
+            }
+          }
+        ]
+      }
+    },
+    "kurofune2-0717": {
+      "tags": [
+        "high-res",
+        "pov"
+      ],
+      "date": "2026-07-07",
+      "item": {
+        "productid": "kurofune2-0717",
+        "title": "援交19歳。高額報酬先払いで真剣ハメ撮り交渉しましたw",
+        "caption": "かぷりこちゃん（仮名）19歳Cカップ。親から働けという圧と共にスマホ代もこれからは自分で払えと言われたが、バイトなどは面倒で続かないため援交を始めたそうです。最初は勝手がわからず本名で登録していたが、友人に止められこの名前になったとのこと。彼氏とは援交用のアプリがバレたことがきっかけで一週間前にフラれてしまったらしいですwwSEX後にお金を払ってくれない輩が過去にいたため、かなり先払いに拘っていました。外に出すと言ってゴム無しでハメ撮りしていたのですが、若さ故に締りが良すぎて思わず中出ししてしまいましたw",
+        "makername": "黒船（プレステージ）",
+        "url": "https://duga.jp/ppv/kurofune2-0717/",
+        "affiliateurl": "https://click.duga.jp/ppv/kurofune2-0717/48917-01",
+        "opendate": "2026/10/07",
+        "releasedate": "2026/07/07",
+        "price": "980円～",
+        "jacketimage": [
+          {
+            "small": "https://pic.duga.jp/unsecure/kurofune2/0717/noauth/jacket_120.jpg"
+          },
+          {
+            "midium": "https://pic.duga.jp/unsecure/kurofune2/0717/noauth/jacket_240.jpg"
+          },
+          {
+            "large": "https://pic.duga.jp/unsecure/kurofune2/0717/noauth/jacket.jpg"
+          }
+        ],
+        "samplemovie": [
+          {
+            "midium": {
+              "movie": "https://affsample.duga.jp/unsecure/kurofune2-0717/noauth/movie.mp4",
+              "capture": "https://affsample.duga.jp/unsecure/kurofune2-0717/noauth/flvcap.jpg"
+            }
+          }
+        ],
+        "label": [
+          {
+            "id": "kurofune",
+            "name": "黒船",
+            "number": "0717"
           }
         ],
         "category": [
